@@ -1,0 +1,282 @@
+.page {
+    background-color: #fff;
+}
+
+.normal {
+    padding: 0 360px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 480px;
+    padding: 0 100px 0 360px;
+    background-image: url('../../assets/images/example/banner-bg.jpg');
+}
+
+.ex-title {
+    font-size: 60px;
+    height: 56px;
+    line-height: 56px;
+    color: #fff;
+}
+
+.ex-desc {
+    font-size: 20px;
+    margin-top: 20px;
+    height: 22px;
+    color: #fff;
+
+}
+.imgs {
+    width: 100%;
+    height: 100%;
+}
+
+.content-box {
+    background-color:#fff;
+}
+// 人体分析简介
+.cb-one {
+    display: flex;
+    justify-content: flex-start;
+    // height: 251px;
+    background-color: #f7f8fa;
+    padding: 45px 360px 50px;
+}
+
+.cb-one-left {
+    display: flex;
+    width: 743px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0;
+}
+
+.imgs {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+}
+
+.title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.desc {
+    text-align: justify;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+    line-height: 1.7;
+    word-wrap: break-word;
+}
+
+.cb-one-rt-img {
+    box-sizing: border-box;
+    width: 330px;
+    height: 140px;
+    padding-top: 40px;
+    margin-left: 106px;
+    border: none;
+}
+
+
+//  产品子功能
+.command-title {
+    text-align: center;
+    font-size: 32px;
+    color: #000;
+    font-weight: 400;
+    line-height: 46px;
+    margin-bottom: 30px;
+}
+.cb-two {
+    background-color: #fff;
+    padding: 45px 370px 50px;
+}
+.lists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.items {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+    padding: 20px;
+}
+.center {
+    width: 48px;
+    height: 48px;
+}
+.c-media-heading {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    padding: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+
+.c-media-info {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.7;
+    word-wrap: break-word;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical
+}
+
+
+.cb-three {
+    background-color:  #f7f8fa;
+    padding: 45px 370px 50px;
+}
+
+.cb-four {
+    background-color:  #fff;
+    padding: 45px 360px 50px;
+} 
+
+.tabs {
+    margin: 0 175px;
+    padding: 40px 0 0;
+    
+}
+.tabs p {
+    font-size: 14px;
+}
+
+.tabs h4 {
+    margin-bottom: 10px;
+}
+
+.tabs p:nth-child(2) {
+    margin-bottom: 25px;
+}
+
+/deep/.ivu-tabs-nav {
+    padding-left: 0;
+    margin: 0 auto;
+    float: none;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+    transition: -webkit-transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+/deep/.ivu-tabs-ink-bar {
+    height: 2px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #00BAFF;
+    position: absolute;
+    left: 40.5%;
+    bottom: 1px;
+    z-index: 1;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    padding: 45px 370px 50px;
+    background-color: #f7f8fa;
+}
+
+.f-left {
+    width: 50%;
+    padding-right: 36px;
+    border-right: 1px solid #ddd;
+}
+
+.home-recommend-tit {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 28px;
+    line-height: 40px;
+}
+
+.home-recommend-on {
+    padding-bottom: 0;
+    margin-top: 16px;
+}
+
+.home-recommend-desc {
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.home-recommend-btn {
+    margin-top: 40px;
+    width: 160px;
+    height: 36px;
+    min-width: 140px;
+    padding: 0 20px;
+    background-color: #00a4ff;
+    color: #fff;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    outline: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.f-right {
+    display: flex;
+    align-items: center;
+    padding-left: 36px;
+}
+
+.f-r-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-r-top {
+    display: inline-block;
+    border: 1px solid #ddd;
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 30px;
+}

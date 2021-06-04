@@ -1,0 +1,195 @@
+ul {
+  list-style: none;
+}
+.header-box {
+
+  .ivu-input {
+    background: #252c36!important;
+    border-color: #252c36!important;
+    height: 36px !important;
+    outline: none!important;
+    border-radius:0!important;
+    color: #ddd!important;
+  }
+  .ivu-input:focus {
+    box-shadow: none!important;
+  }
+  .ivu-input-icon {
+    height: 39px!important;
+    line-height: 39px!important;
+    color: #fff!important;
+    font-size: 20px!important;
+  }
+  .ivu-badge-dot {
+    top: 8px!important;
+  }
+  .ivu-dropdown-item {
+    color: #ccc;
+  }
+  .ivu-select-dropdown {
+    background: #2B303B!important;
+  }
+  .ivu-dropdown-item:hover {
+    background: #363944;
+    color: #fff;
+  }
+  .line {
+    width: 100%;
+    height: 1px;
+    background: #3C404A;
+  }
+}
+
+.footer-box {
+
+  .line {
+    max-width: 1200px;
+    height: 1px;
+    margin: 0 auto;
+    background: #6D6F71;
+  }
+}
+
+
+.page-contents-login {
+  margin: 0 40px;
+  max-width: 1903px;
+  // min-width: 800px;
+  width: 100%;
+}
+
+.page-contents {
+  padding: 0 40px;
+  // max-width: 1800px;
+  // margin: 0 auto;
+  // min-width: 800px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.header-bottom{
+  .nav-list{
+    height: 50px;
+    align-items: center;
+    letter-spacing: 4px;
+    a{
+      color: #ffffff;
+    }
+    li{
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      color: #ffffff;
+      margin-right: 30px;
+      position: relative;
+    }
+    .nav-list-hover::before{
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      z-index:1;
+      border-bottom: 8px solid #ffffff;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+    li:last-child{
+      margin-right: 0;
+    }
+  }
+}
+.nav-content{
+  position: absolute;
+  left: 30px;
+  width: 1130px;
+  height: 480px;
+  background-color: #ffffff;
+  // border: 1px solid #cccccc;
+  box-shadow: 0 0 3px 2px rgba(0,0,0,0.08);
+  .nav-tab{
+    width: 200px;
+    flex-direction: column;
+    background-color: #f5f7fa;
+    li{
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding-left: 28px;
+      border-bottom: 1px solid #DDDDDD;
+    }
+    .nav-tab-hover{
+      position: relative;
+      z-index: 9;
+      background-color: #fff;
+      border-color: transparent;
+      box-shadow: -5px 2px 5px 0px rgba(0,0,0,0.08);
+      color: #00BAFF;
+    }
+  }
+  .nav-tab-hovers{
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
+    border-color: transparent;
+    // box-shadow: -5px 2px 5px 0px rgba(0,0,0,0.08);
+    color: #00BAFF;
+  }
+  .nav-tab-item{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: #ffffff;
+    height: 100%;
+    overflow-y: auto;
+    padding: 30px;
+    box-shadow: -2px -1px 5px rgba(0,0,0,0.08);
+    margin:0 0 20px 0;
+    p{
+      font-weight: 700;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E5E8ED;
+      margin-bottom: 10px;
+      margin-right: 20px;
+    }
+    .nav-tab-item-box{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+      max-height: 40px;
+      break-inside: avoid;
+      .second-nav-tab {
+        width: 148px;
+        max-height: 40px;
+      }
+      .nav-tab-item-name{
+        // position: absolute;
+        // top: 20px;
+        // left: 200px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 90%;
+        .tab-nav-item {
+          display: flex;
+          justify-content: space-around;
+          flex-direction: column;
+          font-size: 14px;
+          margin-bottom: 30px;
+          width: 25%;
+          height: auto;
+          margin-left: 20px;
+          .proLists {
+            width: 148px;
+          }
+        }
+      }
+    }
+  }
+  .proLists:hover {
+    color: #00BAFF;
+  }
+}

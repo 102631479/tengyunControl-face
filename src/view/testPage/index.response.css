@@ -1,0 +1,186 @@
+.mod {
+  width: 38.4vw;
+  height: 63.6vw;
+}
+
+.box {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 38.4vw;
+  height: 63.6vw;
+  overflow: auto;
+}
+
+.bd {
+  position: relative;
+  align-self: center;
+  opacity: 1;
+  width: 38.13vw;
+  height: 40.27vw;
+}
+
+.main {
+  position: relative;
+  margin-top: 1.2vw;
+  margin-left: 2.13vw;
+  max-width: 36.27vw;
+  height: 3.33vw;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 3.33vw;
+  white-space: nowrap;
+  color: #333333;
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 2.8vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.submain {
+  position: relative;
+  margin-top: 0.27vw;
+  margin-left: 2.13vw;
+  max-width: 36.27vw;
+  height: 3.33vw;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 3.33vw;
+  white-space: nowrap;
+  color: #656565;
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 2.53vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.row {
+  display: flex;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.93vw;
+  width: 34vw;
+  height: 4.8vw;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 4.8vw;
+}
+
+.yuan {
+  margin-top: 0.53vw;
+  margin-right: 1.07vw;
+  text-decoration: none;
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #cf6759;
+  font-family: "STHeitiSC-Light";
+  font-size: 3.73vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.price {
+  max-width: 14.67vw;
+  height: 4.8vw;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 4.8vw;
+  white-space: nowrap;
+  color: #cf6759;
+  font-family: "Arial-BoldMT";
+  font-size: 4.8vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text {
+  margin-top: 0.8vw;
+  text-decoration: none;
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #989898;
+  font-family: "FZLTKHK--GBK1-0";
+  font-size: 2.53vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ft {
+  display: flex;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  flex-direction: row;
+  margin-top: 1.6vw;
+  width: 34.67vw;
+  height: 5.33vw;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(207.000732421875, 103.9984130859375, 89.99862670898438, 1);
+  background-color: #ffffff;
+  width: 17.73vw;
+  height: 5.33vw;
+  overflow: auto;
+}
+
+.text_2 {
+  max-width: 16.13vw;
+  height: 3.33vw;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 3.33vw;
+  white-space: nowrap;
+  color: #cf6759;
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 2.53vw;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(207, 103, 89, 1);
+  background-color: #cf685a;
+  width: 16.93vw;
+  height: 5.33vw;
+  overflow: auto;
+}
+
+.txt {
+  margin-left: 2.67vw;
+  max-width: 14.13vw;
+  height: 3.33vw;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 3.33vw;
+  white-space: nowrap;
+  color: #ffffff;
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 2.53vw;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -1,0 +1,250 @@
+.page {
+    width: 100%;
+    height: 100%;
+    .banner{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 100%;
+        }
+        .banner-text{
+            width: 1200px;
+            position: absolute;
+            color: #ffffff;
+            p{
+                width: calc(1200px / 2);
+                font-weight: 500;
+                margin-bottom: 10px;
+            }
+            span{
+                display: block;
+                width: calc(1200px / 2);
+            }
+        }
+    }
+    .content-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 70px 0;
+        width: 100%;
+        .content-title{
+            color: #020202;
+        }
+        .content-box-info{
+            width: 1200px;
+            margin: auto;
+        }
+    }
+    .plan-advantage{
+        background-color: #ffffff;
+        .plan-advantage-list{
+            flex-wrap: wrap;
+            padding-top: 68px;
+            .plan-advantage-box{
+                flex-direction: column;
+                width: 238px;
+                margin-bottom: 40px;
+                margin-right: 80px;
+                img{
+                    width: 50px;
+                    height: 50px;
+                }
+                p{
+                    padding: 19px 0 40px;
+                    color: #000000;
+                }
+                span{
+                    color: #444444;
+                }
+            }
+            .plan-advantage-box:nth-child(4n){
+                margin-right: 0;
+            }
+        }
+    }
+    .plan-framework{
+        min-height: 514px;
+        background-image: url('../../assets/images/scheme/bg_sljx.png');
+        background-repeat: no-repeat;
+        .plan-framework-info{
+            padding-top: 59px;
+            img{
+                width: 815px;
+                height: 275px;
+            }
+            .plan-framework-text{
+                flex-direction: column;
+                margin-left: 40px;
+                p{
+                    font-weight: 500;
+                }
+                p,span{
+                    color: #000000;
+                }
+            }
+        }
+    }
+    .use-scene{
+        background-color: #ffffff;
+        .use-scene-info{
+            padding-top: 39px;
+            .use-scene-content{
+                width: 1000px;
+                margin: auto;
+                span{
+                    display: block;
+                    margin: 28px 0 29px;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .teamwork-case{
+        background-color: #F5F7FA;
+        .teamwork-case-info{
+            padding-top: 60px;
+        }
+        .case-swiper-box{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 360px;
+            height: 356px;
+            background-color: #ffffff;
+            img{
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+            }
+            p{
+                color: #000000;
+                margin-top: 30px;
+            }
+            span{
+                display: block;
+                width: 294px;
+                margin: 22px auto 0;
+                color: #666666;
+            }
+        }
+        .swiper-prev{
+            margin-right: 7px;
+        }
+        .swiper-next{
+            margin-left: 7px;
+        }
+        .swiper-prev:focus,.swiper-next:focus{
+            border-color: transparent;
+        }
+        button:focus{
+            border-color: transparent;
+        }
+        .swiper-prev,.swiper-next{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 356px;
+            background-color: #ffffff;
+            border: 1px solid #eeeeee;
+        }
+    }
+    .related-product{
+        background-color: #ffffff;
+        .related-product-list{
+            max-height: 580px;
+            overflow-y: auto;
+            margin-top: 58px;
+            .related-product-box{
+                width: 100%;
+                height: auto;
+                border: 1px solid #eeeeee;
+                margin-bottom: 16px;
+                padding: 30px;
+                img{
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 22px;
+                }
+                p{
+                    color: #000000;
+                    margin-bottom: 17px;
+                }
+                span{
+                    color: #666666;
+                }
+            }
+            .related-product-box:hover{
+                box-shadow: 0px 6px 6px 0px rgba(0,0,0,0.06); 
+            }
+            .related-product-box:last-child{
+                margin-bottom: 0;
+            }
+        }
+        /* 设置滚动条的样式 */
+        ::-webkit-scrollbar {
+            width:2px;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            border-radius:10px;
+            background-color:#DDDDDD;
+        }
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius:10px;
+            background-color:#00BAFF;
+        }
+        
+    }
+    .empty-dom{
+        width: 100%;
+        padding: 200px 0;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        img{
+            width: 138px;
+            height: 124px;
+            margin-right: 37px;
+        }
+        .empty-dom-text{
+            p{
+                color: #333333;
+                padding-bottom: 20px;
+            }
+            /deep/.ivu-btn{
+                border-radius: 0;
+            }
+        }
+    }
+    .contact-us{
+        height: 300px;
+        background-image: url('../../assets/images/scheme/bg_lxwm.png');
+        .contact-us-info{
+            justify-content: space-between;
+            .contact-us-box{
+                width: 320px;
+                flex-direction: column;
+                .contact-us-title{
+                    color: #000000;
+                    margin-bottom: 33px;
+                }
+                span{
+                    color: #333333;
+                }
+                button{
+                    width: 150px;
+                    margin-top: 35px;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}
+
