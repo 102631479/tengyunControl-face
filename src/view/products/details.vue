@@ -9,11 +9,11 @@
   <div class="page">
     <!-- 占位广告图 -->
     <div class="banner">
-      <div class="banner-text"> 
+      <div class="banner-text">
         <div class="banner-video">
           <span class="f-size-38">
             <!-- 刷脸就行  -->
-            {{productsDel.bannerHeadline}}  
+            {{productsDel.bannerHeadline}}
           </span>
           <img src="../../assets/images/product/ic_bf_b.png" alt="" class="videoImg" @click="bannerVideo">
         </div>
@@ -44,7 +44,10 @@
             </span>
         </div>
         <!-- <img src="@/assets/images/product/img_sljx_cp.png" alt="" /> -->
-        <img :src="productsDel.pictureUrl" alt="" />
+        <div class="product-detail-bf">
+           <img :src="productsDel.pictureUrl" alt="" />
+          <img src="../../assets/images/product/ic_bf_b.png" alt="" class="bfVideoImg" @click="bannerVideo">
+        </div>
       </div>
     </div>
     <!-- 内容模块 -->
@@ -145,7 +148,8 @@
       :closable="false"
       :footer-hide="true"
     >
-      <video v-if="modalVideo" :src="productsDel.videoUrl" controls="controls" style="display: block;"></video>
+      <video v-if="modalVideo" :src="productsDel.videoUrl" controls="controls"
+       style="display: block;width: 700px;height: 390px;"></video>
       <div class="deleVideo" @click="modalVideo=false">
         <img src="../../assets/images/ic_gb.png" alt="">
       </div>
@@ -154,41 +158,41 @@
 </template>
 
 <script>
-import {getProductsDetail} from '../../api/products.js'
+import { getProductsDetail } from '../../api/products.js'
 export default {
-  data() {
+  data () {
     return {
-      detlilID:'',
-      productsDel:{},
-      modalVideo:false,
-    };
+      detlilID: '',
+      productsDel: {},
+      modalVideo: false
+    }
   },
-  created() {
+  created () {
     // console.log(this.$route.query.id) //GET
     // console.log(this.$route.params)  //POST
     // this.detlilID=this.$route.params.id
-    
-    // this.detlilID=this.$route.query.id
-    // this.init(this.detlilID)
-    this.init('1372825594884665344')
+
+    this.detlilID = this.$route.query.id
+    this.init(this.detlilID)
+    // this.init('1372825594884665344')
   },
   methods: {
-    init(id){
-      getProductsDetail(id).then(res=>{
-        this.productsDel=res.data
-        console.log(res.data,4444);
-      }).catch(err=>{console.log(err);})
+    init (id) {
+      getProductsDetail(id).then(res => {
+        this.productsDel = res.data
+        // console.log(res.data,4444);
+      }).catch(err => { console.log(err) })
     },
-    bannerVideo(){
-      this.modalVideo=true
+    bannerVideo () {
+      this.modalVideo = true
     },
-    startUse(){
-      console.log('我是产品地址')
-      // window.open(this.productsDel)
+    startUse () {
+      // console.log('我是产品地址',this.productsDel.productUrl)
+      window.open('https://' + this.productsDel.productUrl)
     }
   },
-  mounted() {},
-};
+  mounted () {}
+}
 </script>
 
 <style lang="scss" scoped>

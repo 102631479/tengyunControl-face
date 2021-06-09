@@ -1,5 +1,5 @@
 <!--
- * @Description: 
+ * @Description:
  * @Version: 2.0
  * @Autor: huangfu
  * @Date: 2020-09-14 16:21:23
@@ -16,12 +16,12 @@
 
 <script>
 // import { mapState } from "vuex";
-import customerService from "_c/customerService";
+import customerService from '_c/customerService'
 export default {
-  name: "App",
+  name: 'App',
   components: { customerService },
-  data() {
-    return {};
+  data () {
+    return {}
   }
   // computed:{
   //     ...mapState('microApp', ['content']),
@@ -34,7 +34,8 @@ export default {
   //       // console.log('路由')
   //   }
   // }
-};
+
+}
 </script>
 
 <style lang="scss"></style>

@@ -78,6 +78,17 @@
                 margin-top: 28px;
                 color: #666666;
             }
+            .product-detail-bf{
+                position: relative;
+                display: block;
+                .bfVideoImg{
+                    width: 36px;
+                    height: 28px;
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                }
+            }
         }
     }
     .product-features{
@@ -306,6 +317,7 @@
 /deep/.ivu-modal-body{
     padding:0;
     position: relative;
+    margin-left: -51px;
     .deleVideo{
         width: 28px;
         height: 28px;

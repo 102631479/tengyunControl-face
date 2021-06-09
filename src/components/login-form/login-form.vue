@@ -1,5 +1,10 @@
 <template>
-  <Form ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="handleSubmit">
+  <Form
+    ref="loginForm"
+    :model="form"
+    :rules="rules"
+    @keydown.enter.native="handleSubmit"
+  >
     <FormItem prop="userName">
       <Input v-model="form.userName" placeholder="请输入用户名">
         <span slot="prepend">
@@ -15,7 +20,9 @@
       </Input>
     </FormItem>
     <FormItem>
-      <Button @click="handleSubmit" type="primary" long :loading="loading" >登录</Button>
+      <Button @click="handleSubmit" type="primary" long :loading="loading"
+        >登录</Button
+      >
     </FormItem>
   </Form>
 </template>
@@ -30,17 +37,13 @@ export default {
     userNameRules: {
       type: Array,
       default: () => {
-        return [
-          { required: true, message: '账号不能为空', trigger: 'blur' }
-        ]
+        return [{ required: true, message: '账号不能为空', trigger: 'blur' }]
       }
     },
     passwordRules: {
       type: Array,
       default: () => {
-        return [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
-        ]
+        return [{ required: true, message: '密码不能为空', trigger: 'blur' }]
       }
     }
   },
@@ -69,6 +72,9 @@ export default {
             password: this.form.password
           })
         }
+        let data = this.$store.state.user.token
+        document.cookie = `token=${data}; path=/; domain=wdblog.top;`
+        Cookies.set('token', data)
       })
     }
   }

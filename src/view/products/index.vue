@@ -130,8 +130,8 @@
               >
                 <p class="f-size-16">{{ res.businessName }}</p>
                 <span class="f-size-14">
-                  <!-- {{res.value}} -->
-                  暂无数据
+                  {{res.businessDescribe}}
+                  <!-- 暂无数据 -->
                 </span>
               </div>
             </div>
@@ -210,14 +210,14 @@
 </template>
 
 <script>
-import {getHotProducts,getNewProducts,getBasicProduct} from '../../api/products.js'
+import { getHotProducts, getNewProducts, getBasicProduct } from '../../api/products.js'
 // 动态侧边目录
 export default {
-  data() {
+  data () {
     return {
-      isFixed: false, //锚点定位模块是否固定定位状态
-      HotProducts:[],//热门产品
-      NewProducts:[],//最新产品
+      isFixed: false, // 锚点定位模块是否固定定位状态
+      HotProducts: [], // 热门产品
+      NewProducts: [], // 最新产品
       listData: [
         {
           // title: "智慧景区",
@@ -245,7 +245,7 @@ export default {
           //     ],
           //   },
           // ],
-        },
+        }
         // {
         //   title: "特色小镇",
         //   children: [
@@ -274,77 +274,77 @@ export default {
         //   ],
         // },
       ],
-      scroll: "",
-      isHref: "",
-    };
+      scroll: '',
+      isHref: ''
+    }
   },
   watch: {
     scroll: function () {
-      this.handleLoadSroll();
-    },
+      this.handleLoadSroll()
+    }
   },
-  created() {
+  created () {
     this.init()
   },
   methods: {
     // 监听滚动位置
-    handleScroll() {
+    handleScroll () {
       //   window.pageYOffset ||
       //   document.documentElement.scrollTop ||
       //   document.body.scrollTop;
-      this.scroll = document.documentElement.scrollTop;
-      this.isFixed = this.scroll > 400;
+      this.scroll = document.documentElement.scrollTop
+      this.isFixed = this.scroll > 400
     },
     // 控制锚点滚动
-    handleHref(index, childIndex) {
+    handleHref (index, childIndex) {
       let jump = document
-        .getElementsByClassName("product-category")[index]
-        .getElementsByClassName("href-select"); //获取当前点击的元素
-      let bannerHeight = this.$refs.banner.offsetHeight; //获取banner高度以计算偏移量
-      let hotProHeight = this.$refs.hotProHeight.offsetHeight; //获取banner高度以计算偏移量
-      let total = jump[childIndex].offsetTop + bannerHeight + hotProHeight - 20; //计算当前的offset在浏览窗口的整体偏移量
-      let step = total / 50; //平滑滚动的效果，把总距离分成50个小段，每10ms执行一次
+        .getElementsByClassName('product-category')[index]
+        .getElementsByClassName('href-select') // 获取当前点击的元素
+      let bannerHeight = this.$refs.banner.offsetHeight // 获取banner高度以计算偏移量
+      let hotProHeight = this.$refs.hotProHeight.offsetHeight // 获取banner高度以计算偏移量
+      let total = jump[childIndex].offsetTop + bannerHeight + hotProHeight - 20 // 计算当前的offset在浏览窗口的整体偏移量
+      let step = total / 50 // 平滑滚动的效果，把总距离分成50个小段，每10ms执行一次
       let distance =
         document.documentElement.scrollTop ||
         document.body.scrollTop ||
-        window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
+        window.pageYOffset // 获取滚动条的高度(兼容三种浏览器版本)
       if (total > distance) {
-        smoothDown(); //向下滑动
+        smoothDown() // 向下滑动
       } else if (total < distance) {
-        let newTotal = distance - total; //当div到窗口的距离<滚动条的距离，向上滑动，此时滑动的距离是distance - total
-        step = newTotal / 20;
-        smoothUp();
+        let newTotal = distance - total // 当div到窗口的距离<滚动条的距离，向上滑动，此时滑动的距离是distance - total
+        step = newTotal / 20
+        smoothUp()
       } else {
-        document.body.scrollTop = total;
-        document.documentElement.scrollTop = total;
-        window.pageYOffset = total;
+        document.body.scrollTop = total
+        document.documentElement.scrollTop = total
+        window.pageYOffset = total
       }
-      //向下滑动
-      function smoothDown() {
+      // 向下滑动
+      function smoothDown () {
         if (distance < total) {
-          distance = distance + step;
-          document.body.scrollTop = distance;
-          document.documentElement.scrollTop = distance;
-          window.pageYOffset = total;
-          setTimeout(smoothDown, 10);
+          distance = distance + step
+          document.body.scrollTop = distance
+          document.documentElement.scrollTop = distance
+          window.pageYOffset = total
+          setTimeout(smoothDown, 10)
         }
       }
-      //向上滑动
-      function smoothUp() {
+      // 向上滑动
+      function smoothUp () {
         if (distance > total) {
-          distance -= step;
-          document.body.scrollTop = distance;
-          document.documentElement.scrollTop = distance;
-          window.pageYOffset = total;
-          setTimeout(smoothUp, 10);
+          distance -= step
+          document.body.scrollTop = distance
+          document.documentElement.scrollTop = distance
+          window.pageYOffset = total
+          setTimeout(smoothUp, 10)
         }
       }
-      this.isHref = `index${index}-child${childIndex}`;
+      this.isHref = `index${index}-child${childIndex}`
     },
-    handleLoadSroll() {
-      let _this = this;
-      let sections = document.getElementsByClassName("product-category");
-      let index = 0;
+    handleLoadSroll () {
+      let _this = this
+      let sections = document.getElementsByClassName('product-category')
+      let index = 0
       for (var i = 0; i < sections.length; i++) {
         if (
           _this.scroll >=
@@ -353,10 +353,10 @@ export default {
             this.$refs.hotProHeight.offsetHeight -
             100
         ) {
-          index = i;
+          index = i
         }
       }
-      let href = sections[index].getElementsByClassName("href-select");
+      let href = sections[index].getElementsByClassName('href-select')
       for (var i = href.length - 1; i >= 0; i--) {
         if (
           _this.scroll >=
@@ -365,67 +365,66 @@ export default {
             this.$refs.hotProHeight.offsetHeight -
             100
         ) {
-          _this.isHref = `index${index}-child${i}`;
-          break;
+          _this.isHref = `index${index}-child${i}`
+          break
         }
       }
     },
     // 跳转
-    handleJump(id) {
-      this.$router.push({   //GET
-        path:"/productDetail",
-        query:{id}
-      });
+    handleJump (id) {
+      this.$router.push({ // GET
+        path: '/productDetail',
+        query: { id }
+      })
       // this.$router.push({  //POST
       //   name:"productDetail",
       //   params:{id}
       // });
-      
     },
-    handleHrefCheck(item, index) {
-      item.checked = !item.checked;
-      this.$set(this.listData, index, item);
+    handleHrefCheck (item, index) {
+      item.checked = !item.checked
+      this.$set(this.listData, index, item)
     },
-    init(){
-      //获取热门产品
-      getHotProducts().then(res=>{
-        this.HotProducts=res.data
-      }).catch(err=>{
-        console.log(err);
+    init () {
+      // 获取热门产品
+      getHotProducts().then(res => {
+        this.HotProducts = res.data
+      }).catch(err => {
+        console.log(err)
       })
-      //获取最新产品
-      getNewProducts().then(res=>{
-        this.NewProducts=res.data
-      }).catch(err=>{
-        console.log(err);
+      // 获取最新产品
+      getNewProducts().then(res => {
+        this.NewProducts = res.data
+      }).catch(err => {
+        console.log(err)
       })
-      //获取产品列表
-      getBasicProduct('001').then(res=>{
-        let BasicList=JSON.parse(res.data)
-        this.listData=BasicList
-        console.log(222,BasicList);
-      }).catch(err=>{
-        console.log(err);
+      // 获取产品列表
+      getBasicProduct('001').then(res => {
+        let BasicList = JSON.parse(res.data)
+        this.listData = BasicList
+        console.log(222, BasicList)
+      }).catch(err => {
+        console.log(err)
       })
     },
-    navgetConsole(){
-      console.log('跳转控制台个人中心,在页面中申请使用');
+    navgetConsole () {
+      console.log('跳转控制台个人中心,在页面中申请使用')
     }
-  
+
   },
-  mounted() {
+  mounted () {
     this.listData.map((res) => {
-      res.checked = false;
-    });
-    this.listData[0].checked = true;
+      res.checked = false
+    })
+    this.listData[0].checked = true
     // 监听滚动位置
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
   },
-  destroyed() {
+  destroyed () {
     // 移除监听滚动
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-};
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+}
 </script>
 
 <style lang="scss" scoped>

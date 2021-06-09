@@ -145,152 +145,184 @@
 </template>
 
 <script>
-import swiper from "./swiper/swiper.vue";
-import { getUserInfo } from "@/api/user";
-import partnerComponent from "@/components/partner-component/index";
+import Cookies from 'js-cookie'
+
+import swiper from './swiper/swiper.vue'
+import { getUserInfo } from '@/api/user'
+import partnerComponent from '@/components/partner-component/index'
 export default {
-  name: "Home",
+  name: 'Home',
   components: { swiper, partnerComponent },
-  data() {
+  data () {
     return {
       tab1: [
         {
-          title: "卡劵营销",
-          content: "聚合优质电商、零售门店代金劵，引爆营销活动、提高营销转化率",
+          title: '卡劵营销',
+          content: '聚合优质电商、零售门店代金劵，引爆营销活动、提高营销转化率'
         },
         {
-          title: "全域共建",
-          content: "整合资源、整合人才、整合资金",
+          title: '全域共建',
+          content: '整合资源、整合人才、整合资金'
         },
         {
-          title: "产品体系",
+          title: '产品体系',
           content:
-            "区域化，形成地域明显的产品特质，智能化，打通各种通道，满足政府、景区、游客的各种需求",
+            '区域化，形成地域明显的产品特质，智能化，打通各种通道，满足政府、景区、游客的各种需求'
         },
         {
-          title: "全域景观化 ",
-          content: "以景区电商+全域电商为模式的全新性全域旅游开发模式",
-        },
+          title: '全域景观化 ',
+          content: '以景区电商+全域电商为模式的全新性全域旅游开发模式'
+        }
       ],
 
       tab2: [
         {
-          title: "旅游数据分析",
+          title: '旅游数据分析',
           content:
-            "通过大数据，实时监测景区游客动态，活动参与度，产出数据报告，科学进行调控",
+            '通过大数据，实时监测景区游客动态，活动参与度，产出数据报告，科学进行调控'
         },
         {
-          title: "线上营销渠道",
-          content: "通过自身的电商平台和网络电商平台，使网络销售无盲区",
+          title: '线上营销渠道',
+          content: '通过自身的电商平台和网络电商平台，使网络销售无盲区'
         },
         {
-          title: "景区全网数据化",
+          title: '景区全网数据化',
           content:
-            "实现景区网络全部覆盖、监控全覆盖、设备全覆盖，是景区实时数据能及时上传",
+            '实现景区网络全部覆盖、监控全覆盖、设备全覆盖，是景区实时数据能及时上传'
         },
         {
-          title: "地面推广交易渠道 ",
+          title: '地面推广交易渠道 ',
           content:
-            "以景区电商+采用华夏票联码上来营销体系，扩大景区的目标客户的区域影响力，提高吸客指数",
+            '以景区电商+采用华夏票联码上来营销体系，扩大景区的目标客户的区域影响力，提高吸客指数'
         },
         {
-          title: "景区资源集中化 ",
+          title: '景区资源集中化 ',
           content:
-            "以景区电商+集合景区优势资源，打造景区拳头产品，以多种形式，加大景区对旅游的二次消费回头率等",
-        },
+            '以景区电商+集合景区优势资源，打造景区拳头产品，以多种形式，加大景区对旅游的二次消费回头率等'
+        }
       ],
 
       tab3: [
         {
-          title: "窗口业务系统",
-          content: "现场打印门票、预先印刷门票、卡制门票、身份证门票",
+          title: '窗口业务系统',
+          content: '现场打印门票、预先印刷门票、卡制门票、身份证门票'
         },
         {
-          title: "旅行社业务系统",
-          content: "实名制预约、分时分段预约、实际电子行程单、智能报表",
+          title: '旅行社业务系统',
+          content: '实名制预约、分时分段预约、实际电子行程单、智能报表'
         },
         {
-          title: "OTA分销业务系统",
-          content: "统一编码、统一发码、统一验码",
+          title: 'OTA分销业务系统',
+          content: '统一编码、统一发码、统一验码'
         },
         {
-          title: "电商业务系统 ",
-          content: "以景区电商+电商业务系统实现门票加周边的1+N模式",
-        },
+          title: '电商业务系统 ',
+          content: '以景区电商+电商业务系统实现门票加周边的1+N模式'
+        }
       ],
 
       // 解决方案文案
       solveData: [
         {
-          imgUrl: require("@/assets/images/company-img/青岛崂山@2x.png"),
-          name: "青岛崂山风景区",
-          level: "AAAAA",
-          title: "规模最大",
-          content: "从“数字崂山”到“智慧崂山”再到“全域崂山”的建设全过程",
+          imgUrl: require('@/assets/images/company-img/青岛崂山@2x.png'),
+          name: '青岛崂山风景区',
+          level: 'AAAAA',
+          title: '规模最大',
+          content: '从“数字崂山”到“智慧崂山”再到“全域崂山”的建设全过程'
         },
         {
-          imgUrl: require("@/assets/images/company-img/八达岭@2x.png"),
-          name: "八达岭长城",
-          level: "AAAAA",
-          title: "单日接单最多",
+          imgUrl: require('@/assets/images/company-img/八达岭@2x.png'),
+          name: '八达岭长城',
+          level: 'AAAAA',
+          title: '单日接单最多',
           content:
-            "创造票联检票闸机单日单台检票最多纪录，体现闸机过硬的质量和运行的稳定性",
+            '创造票联检票闸机单日单台检票最多纪录，体现闸机过硬的质量和运行的稳定性'
         },
         {
-          imgUrl: require("@/assets/images/company-img/浮梁古县衙@2x.png"),
-          name: "浮梁谷县衙",
-          level: "AAAA",
-          title: "运行周期最长",
-          content: "使营销由传统销售窗口向新型020营销管理系统转型",
+          imgUrl: require('@/assets/images/company-img/浮梁古县衙@2x.png'),
+          name: '浮梁谷县衙',
+          level: 'AAAA',
+          title: '运行周期最长',
+          content: '使营销由传统销售窗口向新型020营销管理系统转型'
         },
         {
-          imgUrl: require("@/assets/images/company-img/张家界@2x.png"),
-          name: "张家界玻璃桥",
-          level: "AAAAA",
-          title: "管理最超前",
-          content: "全国首个实名制分时分段预约票务管理模式",
+          imgUrl: require('@/assets/images/company-img/张家界@2x.png'),
+          name: '张家界玻璃桥',
+          level: 'AAAAA',
+          title: '管理最超前',
+          content: '全国首个实名制分时分段预约票务管理模式'
         },
         {
-          imgUrl: require("@/assets/images/company-img/辽宁丹东@2x.png"),
-          name: "辽宁丹东凤凰山风景区",
-          level: "AAAA",
-          title: "更便捷更周到的服务",
+          imgUrl: require('@/assets/images/company-img/辽宁丹东@2x.png'),
+          name: '辽宁丹东凤凰山风景区',
+          level: 'AAAA',
+          title: '更便捷更周到的服务',
           content:
-            "实现景区与景区之间、分销商与分销商之间的资源共享，进行资源整合",
+            '实现景区与景区之间、分销商与分销商之间的资源共享，进行资源整合'
         },
         {
-          imgUrl: require("@/assets/images/company-img/北京慕田峪@2x.png"),
-          name: "北京慕田峪长城",
-          level: "AAAAA",
-          title: "独立研发售检票系统",
-          content: "采用国内最新型的：三辊闸检票机",
+          imgUrl: require('@/assets/images/company-img/北京慕田峪@2x.png'),
+          name: '北京慕田峪长城',
+          level: 'AAAAA',
+          title: '独立研发售检票系统',
+          content: '采用国内最新型的：三辊闸检票机'
         },
         {
-          imgUrl: require("@/assets/images/company-img/北京青龙峡.png"),
-          name: "北京青龙峡",
-          level: "AAAA",
-          title: "无纸化办公管理",
-          content: "实现游客数据管理和分析，避免人工出错率",
+          imgUrl: require('@/assets/images/company-img/北京青龙峡.png'),
+          name: '北京青龙峡',
+          level: 'AAAA',
+          title: '无纸化办公管理',
+          content: '实现游客数据管理和分析，避免人工出错率'
         },
         {
-          imgUrl: require("@/assets/images/company-img/淄博周村@2x.png"),
-          name: "淄博周村古镇",
-          level: "AAAA",
-          title: "独立研发门票分销系统",
+          imgUrl: require('@/assets/images/company-img/淄博周村@2x.png'),
+          name: '淄博周村古镇',
+          level: 'AAAA',
+          title: '独立研发门票分销系统',
           content:
-            "C/S、B/S混合架构，数据存储、验证，无限网络营销、商城无限覆盖",
-        },
-      ],
-    };
+            'C/S、B/S混合架构，数据存储、验证，无限网络营销、商城无限覆盖'
+        }
+      ]
+    }
   },
-  created() {
+  created () {
+    if (Cookies.get('token')) {
+      console.log('已经在别的页面登陆过了')
+      this.$store.commit('setToken', Cookies.get('token'))
+      getUserInfo()
+        .then((d) => {
+          console.log(d, '信息')
+          this.$store.commit('setUserInfo', d.data)
+          this.$store.commit('setIsLogin', true)
+        })
+        .catch((err) => {
+          console.log('需要重新登陆')
+          console.log(err)
+          this.$store.commit('setIsLogin', false)
+          this.$store.commit('setUserId', '')
+          this.$store.commit('setUserName', '')
+          this.$store.commit('setUserInfo', {})
+          this.$store.commit('setToken', '')
+        })
+      let data = this.$store.state.user.token
+      document.cookie = `token=${data}; path=/; domain=wdblog.top;`
+      return
+    }
     getUserInfo()
       .then((d) => {
-        this.$store.commit("setUserInfo", d.data);
+        this.$store.commit('setUserInfo', d.data)
       })
-      .catch((err) => console.log(err));
-  },
-};
+      .catch((err) => {
+        console.log('需要重新登陆')
+        console.log(err)
+        this.$store.commit('setIsLogin', false)
+        this.$store.commit('setUserId', '')
+        this.$store.commit('setUserName', '')
+        this.$store.commit('setUserInfo', {})
+        this.$store.commit('setToken', '')
+      })
+  }
+}
 </script>
 <style>
 .container .el-tabs__nav-scroll {
@@ -303,7 +335,7 @@ export default {
   font-family: PingFang SC;
 }
 // -------------------产品服务样式------------------------------
-/* 
+/*
   产品服务样式
  */
 .product-box {
@@ -353,7 +385,7 @@ export default {
   .product-content-content {
     max-width: 1200px;
   }
-  /* 
+  /*
     tabs标签页样式
   */
   .product-content-table {

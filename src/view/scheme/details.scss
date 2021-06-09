@@ -20,7 +20,19 @@
             }
             span{
                 display: block;
-                width: calc(1200px / 2);
+                // width: calc(1200px / 2);
+            }
+            .banner-video{
+                // width: 244px;
+                height: 60px;
+                line-height: 60px;
+                display: flex;
+                .videoImg{
+                    width: 44px;
+                    height: 34px;
+                    margin: 16px ;     
+                }
+
             }
         }
     }
@@ -41,6 +53,7 @@
     .plan-advantage{
         background-color: #ffffff;
         .plan-advantage-list{
+            justify-content: space-evenly; 
             flex-wrap: wrap;
             padding-top: 68px;
             .plan-advantage-box{
@@ -73,7 +86,8 @@
             padding-top: 59px;
             img{
                 width: 815px;
-                height: 275px;
+                // height: 275px;
+                max-height:1400px ;
             }
             .plan-framework-text{
                 flex-direction: column;
@@ -231,6 +245,7 @@
             .contact-us-box{
                 width: 320px;
                 flex-direction: column;
+                
                 .contact-us-title{
                     color: #000000;
                     margin-bottom: 33px;
@@ -244,6 +259,23 @@
                     border-radius: 0;
                 }
             }
+        }
+    }
+}
+/deep/.ivu-modal-body{
+    padding:0;
+    margin-left: -51px;
+    position: relative;
+    .deleVideo{
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        top: -36px;
+        right: -130px;
+        img{
+            width: 20px;
+            height: 20px;
+            display: block;
         }
     }
 }

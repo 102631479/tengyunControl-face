@@ -5,18 +5,24 @@
  * @LastEditTime: 2020-10-28 19:23:14
  * @FilePath: \open-platform-ui\platform-pc-ui\src\api\solution.js
  */
-import axios from '@/libs/api.request';
-import platform from '@/config/platform';
+import axios from '@/libs/api.request'
+import platform from '@/config/platform'
 
 export const getSolutions = (data) => {
-    return axios.request({
-        url: platform.PRODUCT +  '/api/solution' + data,
-        method: 'get'
-    })
+  return axios.request({
+    url: platform.PRODUCT + '/api/solution/' + data,
+    method: 'get'
+  })
 }
 export const getPopularSolve = () => {
-    return axios.request({
-        url: platform.PRODUCT +  '/api/solution/hot',
-        method: 'get'
-    })
+  return axios.request({
+    url: platform.PRODUCT + '/api/solution/hot',
+    method: 'get'
+  })
+}
+export const getNavSolutions = (code) => {
+  return axios.request({
+    url: platform.COMMON + '/api/global-navigate/title/' + code,
+    method: 'get'
+  })
 }

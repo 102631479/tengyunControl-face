@@ -11,8 +11,8 @@
       <div class="page-content">
         <div class="t-center f-size-30 color-20">热门行业解决方案</div>
         <div class="solve-plan-info flex">
-          <div class="solve-plan-box solve-plan-vr cup" 
-          :style="{'background-image': 'url('+BgImage[0]+')'}" 
+          <div class="solve-plan-box solve-plan-vr cup"
+          :style="{'background-image': 'url('+BgImage[0]+')'}"
           @click="handleJump(SolveList[0].id)"
           >
             <p>
@@ -25,7 +25,7 @@
           </div>
           <div
             class="solve-plan-box solve-plan-color-one cup"
-            :style="{'background-image': 'url('+BgImage[1]+')'}" 
+            :style="{'background-image': 'url('+BgImage[1]+')'}"
             @click="handleJump(SolveList[1].id)"
           >
             <p>{{SolveList[1].businessName}}</p>
@@ -34,7 +34,7 @@
           </div>
           <div
             class="solve-plan-box solve-plan-color-two cup"
-            :style="{'background-image': 'url('+BgImage[2]+')'}" 
+            :style="{'background-image': 'url('+BgImage[2]+')'}"
             @click="handleJump(SolveList[2].id)"
           >
             <p>{{SolveList[2].businessName}}</p>
@@ -46,7 +46,7 @@
         <div class="solve-plan-info flex">
           <div
             class="solve-plan-box solve-plan-color-one cup"
-            :style="{'background-image': 'url('+BgImage[3]+')'}" 
+            :style="{'background-image': 'url('+BgImage[3]+')'}"
             @click="handleJump(SolveList[3].id)"
           >
             <p>{{SolveList[3].businessName}}</p>
@@ -55,16 +55,16 @@
           </div>
           <div
             class="solve-plan-box solve-plan-color-two cup"
-            :style="{'background-image': 'url('+BgImage[4]+')'}" 
+            :style="{'background-image': 'url('+BgImage[4]+')'}"
             @click="handleJump(SolveList[4].id)"
           >
             <p>{{SolveList[4].businessName}}</p>
             <span>{{SolveList[4].schemeDescribe}}</span>
             <!-- <span>强，给人的视觉冲击更强</span> -->
           </div>
-          <div 
+          <div
           class="solve-plan-box solve-plan-face cup"
-          :style="{'background-image': 'url('+BgImage[5]+')'}" 
+          :style="{'background-image': 'url('+BgImage[5]+')'}"
           @click="handleJump(SolveList[5].id)"
           >
             <p>{{SolveList[5].businessName}}</p>
@@ -81,51 +81,50 @@
       <div class="page-content">
         <div class="t-center f-size-30 color-20 mb-58">全部解决方案</div>
         <Tabs>
+          <!-- 一级标题 -->
           <TabPane
-            :label="item"
-            v-for="(item, index) in [
-              '智慧景区解决方案',
-              '特色小镇解决方案',
-              '美丽县城解决方案',
-            ]"
+            v-for="(item, index) in lists"
+            :label="item.name"
             :key="index"
           >
             <div class="all-plan-box mt-50 pt-40 pl-40 pr-40 pb-40 bg-fff">
               <div class="flex">
-                <!-- 全部解决方案tab切换 -->
+                <!--  二级标题tab切换 -->
                 <div class="all-plan-box-tab flex">
                   <span
-                    v-for="(item, index) in [
-                      '智慧管理',
-                      '智慧服务',
-                      '智慧营销',
-                      '智慧体验',
-                      '基础设施',
-                    ]"
+                    v-for="(ele, index) in item.children"
                     :key="index"
                     :style="{
                       color: currentAllPlanIndex == index ? '#00BAFF' : '#000',
                     }"
                     @mouseover="currentAllPlanIndex = index"
                     class="cup"
-                    >{{ item }}</span
+                    >{{ ele.name }}</span
                   >
                 </div>
                 <!-- 全部解决方案列表 -->
-                <div class="all-plan-list">
+                <div class="all-plan-list"
+                  v-for="(dataList,num) in item.children"
+                  :key="num"
+                  v-show="currentAllPlanIndex == num"
+                 >
                   <div
                     class="all-plan-list-info cup"
-                    v-for="(item, index) in isShowMore ? 6 : 3"
-                    :key="index"
-                    @click="handleJump"
+                    v-for="(item, ind) in dataList.navigateBusinessVos"
+                    :key="ind"
+                    @click="handleJump(item.id)"
                   >
-                    <div class="flex">
-                      <img src="@/assets/images/scheme/jiejuefangan.png" />
-                      <span class="all-plan-list-name">VR展示展览互动体验</span>
+                    <div v-show="ind < isShowMoreNum">
+                      <div class="flex">
+                        <img src="@/assets/images/scheme/jiejuefangan.png" />
+                        <span class="all-plan-list-name">
+                          {{item.businessName}}
+                        </span>
+                      </div>
+                      <p class="all-plan-list-content">
+                        {{item.businessDescribe}}
+                      </p>
                     </div>
-                    <p class="all-plan-list-content">
-                      运用创意与互动AR和VR数字技术，给客户带来全新的视觉体验
-                    </p>
                   </div>
                 </div>
               </div>
@@ -172,56 +171,65 @@
 </template>
 
 <script>
-import { getSolutions,getPopularSolve } from "@/api/solution";
-import partnerComponent from "@/components/partner-component/index";
+import { getPopularSolve, getNavSolutions } from '@/api/solution'
+import partnerComponent from '@/components/partner-component/index'
 export default {
   components: {
-    partnerComponent,
+    partnerComponent
   },
-  data() {
+  data () {
     return {
       lists: [],
-      SolveList:[],//热门解决方案
-      BgImage:[],
-      currentAllPlanIndex: 0, //全部解决方案的显示控制下标
-      isShowMore: false, //是否展示剩余
-    };
+      SolveList: [], // 热门解决方案
+      BgImage: [],
+      currentAllPlanIndex: 0, // 全部解决方案的显示控制下标
+      isShowMore: false, // 是否展示剩余
+      isShowMoreNum: 3// 展示个数
+    }
   },
-
-  created() {
-    this.init() 
+  watch: {
+    isShowMore (newVal, oldVal) {
+      this.isShowMoreNum = newVal ? 6 : 3
+    }
+  },
+  created () {
+    this.init()
   },
 
   methods: {
-    async init() {
-      // await getSolutions(id)
-      //   .then((d) => {
-      //     this.lists = d.data;
-      //   })
-      //   .catch((e) => {
-      //     this.$Message.warning(e.message);
-      //   });
+    async init () {
+      // 热门解决方案
       await getPopularSolve().then((d) => {
-          this.SolveList = d.data;
-          d.data.forEach(element => {
-            this.BgImage.push(element.bannerPictureUrl)
-          })
+        this.SolveList = d.data
+        d.data.forEach(element => {
+          this.BgImage.push(element.bannerPictureUrl)
+        })
+      }).catch((e) => {
+        this.$Message.warning(e.message)
+      })
+      // 解决方案列表
+      await getNavSolutions('003')
+        .then((d) => {
+          let data = JSON.parse(d.data)
+          // console.log(data);
+          this.lists = data
         }).catch((e) => {
-          this.$Message.warning(e.message);
-        });
+          this.$Message.warning(e.message)
+        })
     },
-    
-    handleJump(id) {
-      console.log(id)
+
+    handleJump (id) {
+      // console.log(id)
+      this.$router.push({ // GET
+        path: '/schemeDetail',
+        query: { id }
+      })
       // this.$router.push("/schemeDetail");
-    },
-  },
+    }
+  }
 
-  watch: {},
-};
+}
 </script>
-
-
 
 <style scoped lang="scss">
 /deep/.ivu-tabs-nav-scroll {
