@@ -18,10 +18,18 @@ const { homeName } = config
 
 
 Vue.use(Router)
+
 const router = new Router({
   routes,
   mode: 'hash'
 })
+
+// 解决连续点击跳转路由报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+    return originalPush.call(this, location).catch(err => err)
+}
 
 const turnTo = (to, access, next) => {
   if (canTurnTo(to.name, access, routes)) next() // 有权限，可访问

@@ -19,6 +19,7 @@
               '移动直播',
               '短信',
             ]"
+            :key="index"
             >{{ item }}</span
           >
         </div>
@@ -34,6 +35,7 @@
               :label="item"
               :name="item"
               v-for="(item, index) in ['全部', '产品', '方案', '文档']"
+              :key="index"
             >
               <div class="result-list-info">
                 <div class="result-box" v-for="(item, index) in 3" :key="index">
@@ -50,6 +52,7 @@
                     <el-breadcrumb-item
                       :to="{ path: '/' }"
                       v-for="(item, index) in 2"
+                      :key="index"
                       >首页{{ index + 1 }}</el-breadcrumb-item
                     >
                   </el-breadcrumb>

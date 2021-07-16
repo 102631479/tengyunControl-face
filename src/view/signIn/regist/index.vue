@@ -67,17 +67,26 @@
         <div class="pl-10 pr-10">
           <FormItem class="mb-30" prop="verifyCode">
             <Input style="width: 75%;" size="large" type="text" class="aaaa"
-              v-model="registForm.verifyCode" :maxlength="4"  placeholder="短信验证码" />      
-            
-            
-            <!-- :loading="sendCodeLoading" 关闭动画-->
+              v-model="registForm.verifyCode" :maxlength="4"  placeholder="短信验证码" />   
             <Button
               size="large"
               style="width: 25%;height:44px"
               @click="send"
               ref="sendCode"
               class="lh-28"
-            >获取验证码</Button>
+              v-if="sendCodeLoading"
+            >
+            获取验证码
+            </Button>
+            <Button
+              v-else
+              size="large"
+              style="width: 25%;height:44px"
+              disabled
+              class="lh-28"
+            >
+            {{miao}}S
+            </Button>
           </FormItem>
         </div>
         <div class="color-666 f-size-12 ml-10 mb-10">
@@ -108,22 +117,21 @@
 </template>
 
 <script>
+const SM4 = require("gm-crypt").sm4;
 import { register, verifyCode, resetPassword } from "@/api/user";
 import { validateEMail, validateTel, SendCode } from "@/libs/util";
 import { cloneDeep } from "lodash";
 export default {
   data() {
+    //校验密码
     const validatePwd = (rule, value, callback) => {
       console.log(value);
-      console.log(this.registForm);
       if (value !== this.registForm.password) {
         callback(new Error("两次密码输入不一致"));
         return;
       }
       callback();
     };
-
-    //测试
     // 验证码只能是数字
     const validateName1 = (rule, value, callback) => {
       console.log(value);
@@ -134,12 +142,12 @@ export default {
       }
     };
 
-    //
-
     return {
       loading: false,
       single: false,
-      sendCodeLoading: false,
+      miao:60,
+      setTimer:null,//计时器
+      sendCodeLoading: true,//倒计时
       sendCode: {},
       registForm: {
         userName: "",
@@ -166,7 +174,7 @@ export default {
 
         // verifyCode: [ { required: true, message: "请输入验证码", trigger: "blur" }, ],
 
-       //测试 
+        //测试 
         verifyCode: [ { required: true, message: "请输入验证码", trigger: "blur" },
        { validator: validateName1, trigger: "blur", },
        ],
@@ -190,15 +198,22 @@ export default {
         this.$Message.warning("请输入正确的手机号码");
         return;
       }
-      this.sendCodeLoading = true;
+      this.sendCodeLoading = false;
+      this.setTimer= setInterval(() => {
+        this.miao--;
+        if (this.miao==0) {//60s自动清除定时器
+          this.clearReply()
+        }
+      }, 1000);
       await verifyCode({ phone},"register")
         .then((d) => {
           this.$Message.success("验证码发送成功！");
           this.registForm.verifyCode = "";
           this.sendCode.start();
-        })
-        .catch((err) => this.$Message.error(err.msg));
-      this.sendCodeLoading = false;
+        }).catch(err => {
+          this.clearReply()//验证码发送失败清除定时器
+          this.$Message.error(err.msg)
+        });
     },
     submit() {
       if (!this.single) {
@@ -210,14 +225,40 @@ export default {
         let obj = cloneDeep(this.registForm);
         delete obj.password2;
         this.loading = true;
+        obj.password=this.gmcryptSm4(obj.password)
         await register(obj)
-          .then((d) => {
+          .then( d => {
+            this.clearReply()//注册成功清除定时器
             this.$Message.success("注册成功");
             this.$router.push({ name: "login" });
-          })
-          .catch((err) => this.$Message.error(err.msg));
+          }).catch(err => {
+            this.clearReply()//注册失败清除定时器
+            this.$Message.error(err.msg)
+          });
         this.loading = false;
       });
+    },
+    clearReply(){
+      this.sendCodeLoading = true//打开获取验证码
+      clearInterval(this.setTimer)//清除上一个定时器
+      this.miao=60 //计时重置
+    },
+
+    /*
+      M4加密
+    */
+    gmcryptSm4(password) {
+      let sm4Config = {
+        key: "gph2i2xxfln0w9sj",
+        // mode: "cbc",
+        iv: "8r13qykaklic5su7",
+        // cipherType: "base64",
+      };
+      let sm4 = new SM4(sm4Config);
+      let newPassword = password.trim();
+      let text = sm4.encrypt(newPassword);
+      // console.log(sm4.decrypt(text), "解密字符串");
+      return sm4.encrypt(newPassword);
     },
   },
 };
@@ -236,6 +277,11 @@ export default {
   .ivu-input-large {
     padding: 15px 16px;
     height: 44px;
+  }
+  .miao{
+    width: 100px;
+    height: 44px;
+    line-height: 44px;
   }
 }
 </style>

@@ -9,11 +9,11 @@
   <div class="page">
     <!-- 占位广告图 -->
     <div class="banner">
-      <div class="banner-text">
+      <div class="banner-text"> 
         <div class="banner-video">
           <span class="f-size-38">
             <!-- 刷脸就行  -->
-            {{productsDel.bannerHeadline}}
+            {{productsDel.bannerHeadline}}  
           </span>
           <img src="../../assets/images/product/ic_bf_b.png" alt="" class="videoImg" @click="bannerVideo">
         </div>
@@ -138,7 +138,7 @@
           <p class="contact-us-title f-size-24">联系我们</p>
           <span class="f-size-16">我们为您提供个性化的售前购买咨询服务，</span>
           <span class="f-size-16">以及全面的技术售后服务</span>
-          <Button type="primary" ghost>联系我们</Button>
+          <Button type="primary" ghost @click="gonavJump">联系我们</Button>
         </div>
       </div>
     </div>
@@ -158,41 +158,48 @@
 </template>
 
 <script>
-import { getProductsDetail } from '../../api/products.js'
+import {getProductsDetail} from '../../api/products.js'
 export default {
-  data () {
+  data() {
     return {
-      detlilID: '',
-      productsDel: {},
-      modalVideo: false
-    }
+      detlilID:'',
+      productsDel:{},
+      modalVideo:false,
+    };
   },
-  created () {
+  created() {
     // console.log(this.$route.query.id) //GET
     // console.log(this.$route.params)  //POST
     // this.detlilID=this.$route.params.id
-
-    this.detlilID = this.$route.query.id
+    
+    this.detlilID=this.$route.query.id
     this.init(this.detlilID)
     // this.init('1372825594884665344')
   },
   methods: {
-    init (id) {
-      getProductsDetail(id).then(res => {
-        this.productsDel = res.data
+    init(id){
+      getProductsDetail(id).then(res=>{
+        this.productsDel=res.data
         // console.log(res.data,4444);
-      }).catch(err => { console.log(err) })
+      }).catch(err=>{console.log(err);})
     },
-    bannerVideo () {
-      this.modalVideo = true
+    bannerVideo(){
+      this.modalVideo=true
     },
-    startUse () {
+    startUse(){
       // console.log('我是产品地址',this.productsDel.productUrl)
-      window.open('https://' + this.productsDel.productUrl)
+      window.open( 'https://'+this.productsDel.productUrl)
+
+    },
+    gonavJump(){//跳转联系我们
+        this.$router.push({   //GET
+        path:"/contact",
+        // query:{id}
+      });
     }
   },
-  mounted () {}
-}
+  mounted() {},
+};
 </script>
 
 <style lang="scss" scoped>

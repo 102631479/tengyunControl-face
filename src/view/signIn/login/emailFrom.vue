@@ -78,86 +78,110 @@
 </template>
 
 <script>
-import { flattenDeep } from 'lodash'
-import { login, getIdentities, getPermissions } from '@/api/user'
-import formModal from '_c/formModal/index'
-import rule from './rule'
-import verify from '@/components/verify'
-import Cookie from 'js-cookie'
+const SM4 = require("gm-crypt").sm4;
+import { flattenDeep } from "lodash";
+import { login, getIdentities, getPermissions } from "@/api/user";
+import formModal from "_c/formModal/index";
+import rule from "./rule";
+import verify from "@/components/verify";
+import Cookie from "js-cookie";
 export default {
   components: { formModal, verify },
-  data () {
+  data() {
     return {
       rule,
       accountList: [], // 选择角色
       showModal: true, // 弹框
       loading: false, // 按钮loading
       ruleInline: {
-        account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        account: [
+        { required: true, message: "请输入账号", trigger: "blur" },
+        // { pattern:/^(?!@|\.)[A-Za-z0-9@.]+$/, message: "账号格式不正确" }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          // { pattern: /^[\\u4e00-\\u9fa5]|\n|\r|\t/, message: "密码格式不正确" }
+        ],
       },
       loginForm: {
-        account: '',
-        password: ''
-      }
-    }
+        account: "",
+        password: "",
+      },
+    };
   },
+
   methods: {
+    /*
+    M4加密
+    */
+    gmcryptSm4(password) {
+      let sm4Config = {
+        key: "gph2i2xxfln0w9sj",
+        // mode: "cbc",
+        iv: "8r13qykaklic5su7",
+        // cipherType: "base64",
+      };
+      let sm4 = new SM4(sm4Config);
+      let newPassword = password.trim();
+      let text = sm4.encrypt(newPassword);
+      // console.log(sm4.decrypt(text), "解密字符串");
+      return sm4.encrypt(newPassword);
+    },
+
     /**
      * 验证成功
      */
-    async success ({ captchaVerification }) {
-      this.loginForm.captchaVerification = captchaVerification
-
-      this.loading = true
-      await login(this.loginForm)
-        .then((d) => {
-          this.$store.commit('setTagNavList', [])
-          if (process.env.NODE_ENV === 'development') {
-            Cookie.set('token', d.data.token, {
-              domain: '.zhihuiwenlvyun.com',
-              path: '',
-              expires: 7
-            })
+    async success({ captchaVerification }) {
+      this.loginForm.captchaVerification = captchaVerification;
+      this.loading = true;
+      let FromPopy =  JSON.parse(JSON.stringify(this.loginForm))
+      FromPopy.password=this.gmcryptSm4(FromPopy.password)
+      await login(FromPopy).then((d) => {
+          this.$store.commit("setTagNavList", []);
+          if (process.env.NODE_ENV === "development") {
+            Cookie.set("token", d.data.token, {
+              domain: ".zhihuiwenlvyun.com",
+              path: "",
+              expires: 7,
+            });
           } else {
-            Cookie.set('token', d.data.token, {
-              domain: '.zhihuiwenlvyun.com',
-              path: '',
-              expires: 7
-            })
+            Cookie.set("token", d.data.token, {
+              domain: ".zhihuiwenlvyun.com",
+              path: "",
+              expires: 7,
+            });
           }
-          this.$store.commit('setIsLogin', true)
-          this.$store.commit('setToken', d.data.token)
+          this.$store.commit("setIsLogin", true);
+          this.$store.commit("setToken", d.data.token);
           getIdentities().then((d) => {
-            this.identities = d.data.identities
+            this.identities = d.data.identities;
             this.$store.commit(
-              'setAccess',
+              "setAccess",
               flattenDeep(
                 Object.keys(d.data.permissions).map(
                   (key) => d.data.permissions[key]
                 )
               )
-            )
+            );
             if (this.identities.length === 1) {
-              this.$store.commit('setIdentities', this.identities[0].value)
-              this.$store.commit('setIsLogin', true)
-              this.$router.push({ path: '/' })
-              return
+              this.$store.commit("setIdentities", this.identities[0].value);
+              this.$store.commit("setIsLogin", true);
+              this.$router.push({ path: "/" });
+              return;
             }
-            this.modal = true
-          })
-        })
-        .catch((err) => this.$Message.error(err.msg))
+            this.modal = true;
+          });
+        }).catch((err) => this.$Message.error(err.msg));
 
-      this.loading = false
+      this.loading = false;
     },
     /**
      * 提交数据
      */
-    submit () {
-      this.$refs['form'].validate(async (valid) => {
-        if (!valid) return
-        this.$refs.verify.show()
+    submit() {
+      this.$refs["form"].validate(async (valid) => {
+        if (!valid) return;
+        this.$refs.verify.show();
         // this.loading = true;
         // await login(this.loginForm)
         //   .then(d => {
@@ -176,19 +200,19 @@ export default {
         //     this.$Message.error(err.msg);
         //   });
         // this.loading = false;
-      })
+      });
     },
     /**
      * 弹框确认按钮
      */
-    formModalSubmit ({ account }) {
-      this.$router.push({ path: '/' })
+    formModalSubmit({ account }) {
+      this.$router.push({ path: "/" });
       getPermissions({ account: this.formModal.account }).then((d) => {
-        console.log(d)
-      })
-    }
-  }
-}
+        console.log(d);
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

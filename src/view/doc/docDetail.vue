@@ -32,7 +32,7 @@
       <!-- 页面面包屑 -->
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/doc' }" v-for="(item, index) in 2"
-          >首页{{ index + 1 }}</el-breadcrumb-item
+          :key="index">首页{{ index + 1 }}</el-breadcrumb-item
         >
       </el-breadcrumb>
       <div class="detail-html" id="detail-html">

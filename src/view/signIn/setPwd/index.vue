@@ -80,6 +80,7 @@
 </template>
 
 <script>
+const SM4 = require("gm-crypt").sm4;
 import { verifyCode, resetPassword } from "@/api/user";
 import { validateEMail } from "@/libs/util";
 import { cloneDeep } from "lodash";
@@ -164,6 +165,7 @@ export default {
         let obj = cloneDeep(this.setPwdForm);
         delete obj.password2;
         this.loading = true;
+        obj.password=this.gmcryptSm4(obj.password)
         await resetPassword(obj)
           .then(d => {
             this.$Message.success('重置成功')
@@ -172,7 +174,23 @@ export default {
           .catch(err => this.$Message.error(err.msg));
         this.loading = false;
       });
-    }
+    },
+    /*
+      M4加密
+    */
+    gmcryptSm4(password) {
+      let sm4Config = {
+        key: "gph2i2xxfln0w9sj",
+        // mode: "cbc",
+        iv: "8r13qykaklic5su7",
+        // cipherType: "base64",
+      };
+      let sm4 = new SM4(sm4Config);
+      let newPassword = password.trim();
+      let text = sm4.encrypt(newPassword);
+      // console.log(sm4.decrypt(text), "解密字符串");
+      return sm4.encrypt(newPassword);
+    },
   }
 };
 </script>

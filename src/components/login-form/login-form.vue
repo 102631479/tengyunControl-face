@@ -28,55 +28,55 @@
 </template>
 <script>
 export default {
-  name: 'LoginForm',
+  name: "LoginForm",
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     userNameRules: {
       type: Array,
       default: () => {
-        return [{ required: true, message: '账号不能为空', trigger: 'blur' }]
-      }
+        return [{ required: true, message: "账号不能为空", trigger: "blur" }];
+      },
     },
     passwordRules: {
       type: Array,
       default: () => {
-        return [{ required: true, message: '密码不能为空', trigger: 'blur' }]
-      }
-    }
+        return [{ required: true, message: "密码不能为空", trigger: "blur" }];
+      },
+    },
   },
-  data () {
+  data() {
     return {
       form: {
-        userName: 'test123',
-        password: 'zhangsan123'
-      }
-    }
+        userName: "test123",
+        password: "zhangsan123",
+      },
+    };
   },
   computed: {
-    rules () {
+    rules() {
       return {
         userName: this.userNameRules,
-        password: this.passwordRules
-      }
-    }
+        password: this.passwordRules,
+      };
+    },
   },
   methods: {
-    handleSubmit () {
+    handleSubmit() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          this.$emit('on-success-valid', {
+          this.$emit("on-success-valid", {
             userName: this.form.userName,
-            password: this.form.password
-          })
+            password: this.form.password,
+          });
         }
-        let data = this.$store.state.user.token
-        document.cookie = `token=${data}; path=/; domain=wdblog.top;`
-        Cookies.set('token', data)
-      })
-    }
-  }
-}
+        let data = this.$store.state.user.token;
+        document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
+        Cookies.set("token", data);
+      });
+    },
+  },
+};
 </script>

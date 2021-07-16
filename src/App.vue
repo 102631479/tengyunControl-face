@@ -1,5 +1,5 @@
 <!--
- * @Description:
+ * @Description: 
  * @Version: 2.0
  * @Autor: huangfu
  * @Date: 2020-09-14 16:21:23
@@ -16,13 +16,18 @@
 
 <script>
 // import { mapState } from "vuex";
-import customerService from '_c/customerService'
+import customerService from "_c/customerService";
+// import { navigateTree } from "@/api/home";
 export default {
-  name: 'App',
+  name: "App",
   components: { customerService },
-  data () {
-    return {}
+  data() {
+    return {};
+  },
+  mounted() {
+
   }
+
   // computed:{
   //     ...mapState('microApp', ['content']),
   //     ...mapState('microApp', ['mircoAppLoading']),
@@ -35,7 +40,7 @@ export default {
   //   }
   // }
 
-}
+};
 </script>
 
 <style lang="scss"></style>

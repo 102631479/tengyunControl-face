@@ -29,7 +29,7 @@
  *                   奔驰宝马贵者趣，公交自行程序员。
  *                   别人笑我忒疯癫，我笑自己命太贱；
  *                   不见满街漂亮妹，哪个归得程序员？
- **/
+ **/ 
 
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -41,15 +41,16 @@ import store from './store'
 import iView from 'iview'
 // import i18n from '@/locale'
 import config from '@/config'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import importDirective from '@/directive'
 import { directive as clickOutside } from 'v-click-outside-x'
 import installPlugin from '@/plugin'
 import formCreate from '@form-create/iview'
 import vuePrototype from './libs/vuePrototype'
 import './style/iviewStyles/index.less'
-import './style/index.scss'
+import './style/index.scss';
+
 
 import 'swiper/css/swiper.css'
 import './index.less'
@@ -63,7 +64,7 @@ import {
   registerMicroApps,
   setDefaultMountApp,
   start
-} from 'qiankun'
+} from "qiankun";
 
 // Vue.use(iView, {
 //   i18n: (key, value) => i18n.t(key, value)
@@ -71,7 +72,7 @@ import {
 Vue.use(iView)
 Vue.use(TreeTable)
 Vue.use(VOrgTree)
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 Vue.use(VueAwesomeSwiper)
 Vue.use(formCreate)
 
@@ -100,84 +101,86 @@ Object.keys(vuePrototype).map(key => {
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
-
-/*  import qiankun start
+ 
+/*  import qiankun start 
  */
-function genActiveRule (routerPrefix) {
-  return location => location.pathname.startsWith(routerPrefix)
+function genActiveRule(routerPrefix) {
+  return location => location.pathname.startsWith(routerPrefix);
 }
 
-let app = null
+let app = null;
 
-function render ({ appContent, loading }) {
+function render({ appContent, loading }) {
   if (!app) {
     app = new Vue({
       router,
       store,
-      render: h => h(App)
-    }).$mount('#app')
+      render: h => h(App),
+    }).$mount('#app');
   } else {
-    store.commit('microApp/changeCenter', appContent)
-    store.commit('microApp/changeLoading', loading)
+    store.commit('microApp/changeCenter', appContent);
+    store.commit('microApp/changeLoading', loading);
   }
 }
-// qiankun
-// 第一次调用初始主应用
-render({})
+ //qiankun
+ //第一次调用初始主应用
+ render({}) 
 
-let msg = {
-  data: '修炼爱情的辛酸,学会放好以前的渴望'
+ let msg = {
+  data:'修炼爱情的辛酸,学会放好以前的渴望'
 }
-// 基座
+//基座
 let apps = [
   {
-    name: 'console', // 应用名字
-    // 默认会加载这个html 解析里面的js 动态的执行 (子应用必须支持跨域)
-    entry: process.env.NODE_ENV === 'development' ? '//192.168.2.65:10002' : 'http://console.zhihuiwenlvyun.com',
+    name: 'console', //应用名字
+    //默认会加载这个html 解析里面的js 动态的执行 (子应用必须支持跨域)
+    entry:process.env.NODE_ENV === 'development' ? '//192.168.2.65:10002' : 'http://console.zhihuiwenlvyun.com',
     // entry:process.env.NODE_ENV === 'development' ? '//192.168.1.66:10002' : 'http://console.zhihuiwenlvyun.com',
-    container: '#subView', // 节点ID,沙盒模式    容器名/挂载点
+    container:'#subView', // 节点ID,沙盒模式    容器名/挂载点
     // render:renderUtil.render,// 普通模式
     // activeRule: genActiveRule('/#/micrApp/dev'),
 
     // 当访问 /#/microApp/dev 时就挂载到#subView上
-    activeRule: '/#/microApp/dev', // 激活路径
+    activeRule: '/#/microApp/dev', //激活路径
     props: store.state
-  }
+  },
   // {
 
   // }
 ]
 
-// 注册的子应用 参数为数组
-registerMicroApps(apps, {
-  beforeLoad: [
-    app => {
-      console.log(app)
-      console.log('[LifeCycle] before load %c%s', 'color: green;', app.name)
-    }
-  ],
-  beforeMount: [
-    app => {
-      console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name)
-    }
-  ],
-  afterUnmount: [
-    app => {
-      alert('pc-ui')
-      console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name)
-    }
-  ]
-})
+   //注册的子应用 参数为数组
+   registerMicroApps(apps,{
+    beforeLoad: [
+      app => {
+        console.log(app)
+        console.log('[LifeCycle] before load %c%s', 'color: green;', app.name);
+      },
+    ],
+    beforeMount: [
+      app => {
+        console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name);
+      },
+    ],
+    afterUnmount: [
+      app => {
+        alert('pc-ui')
+        console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name);
+      },
+    ],
+  });
 
-// setDefaultMountApp('/star/linjunjie')
-// 开启沙盒模式
-start({
-  sandbox: { strictStyleIsolation: true },
-  excludeAssetFilter: (assetUrl) => {
+  // setDefaultMountApp('/star/linjunjie')
+//开启沙盒模式
+start({ 
+  sandbox :{strictStyleIsolation: true},
+  excludeAssetFilter: (assetUrl) => { 
     return true
   }
 })
 
 /**
- * import qiankun end
- */
+ * import qiankun end 
+ */ 
+
+ 

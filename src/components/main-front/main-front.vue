@@ -178,171 +178,155 @@
 </template>
 
 <script>
-import { getUserInfo } from '@/api/user'
+import { getUserInfo } from "@/api/user";
 
-import { mapMutations, mapActions, mapGetters, mapState } from 'vuex'
-import { navigateTree } from '@/api/home'
-import User from '@/components/main/components/user'
-import Cookies from 'js-cookie'
-import './main-front.less'
-import store from '@/store'
+import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
+import { navigateTree } from "@/api/home";
+import User from "@/components/main/components/user";
+import Cookies from "js-cookie";
+import "./main-front.less";
+import store from "@/store";
 
 export default {
-  name: 'MainFront',
+  name: "MainFront",
   components: {
-    User
+    User,
   },
-  data () {
+  data() {
     return {
-      searchVal: '', // 搜索关键词绑定字段
-      isNavShow: false, // 导航类目弹框状态控制
-      configNav: [], // 导航类目数据
-      expandType: 'left', // 当前类目展示样式
-      currentLiIndex: null, // 当前鼠标滑过选中导航的对应下标
-      currentTabIndex: 0, // 当前选中导航下的选中tab的对应下标
-      navChildrenList: [], // tab切换对应的数组
+      searchVal: "", //搜索关键词绑定字段
+      isNavShow: false, //导航类目弹框状态控制
+      configNav: [], //导航类目数据
+      expandType: "left", //当前类目展示样式
+      currentLiIndex: null, //当前鼠标滑过选中导航的对应下标
+      currentTabIndex: 0, //当前选中导航下的选中tab的对应下标
+      navChildrenList: [], //tab切换对应的数组
       TabIndex: 0, // 二级导航下标
-      Tabkey: 0
-    }
+      Tabkey: 0,
+    };
   },
   computed: {
-    ...mapState('microApp', ['mircoAppLoading']),
-    ...mapGetters(['errorCount']),
-    unreadCount () {
-      return this.$store.state.user.unreadCount
+    ...mapState("microApp", ["mircoAppLoading"]),
+    ...mapGetters(["errorCount"]),
+    unreadCount() {
+      return this.$store.state.user.unreadCount;
     },
-    userAvatar () {
-      return this.$store.state.user.avatarImgPath
+    userAvatar() {
+      return this.$store.state.user.avatarImgPath;
     },
-    userName () {
-      return this.$store.state.user.userName
-    }
+    userName() {
+      return this.$store.state.user.userName;
+    },
   },
   watch: {
     // 监听导航当前下标对导航遮罩做操作
-    currentLiIndex (val) {
+    currentLiIndex(val) {
       if (this.isNavShow == true) {
         this.navChildrenList =
-          this.expandType == 'left'
+          this.expandType == "left"
             ? this.configNav[val].children[0].children
-            : this.configNav[val].children
+            : this.configNav[val].children;
       }
     },
     // 监听导航遮罩的状态进行处理效果
-    isNavShow (val) {
+    isNavShow(val) {
       if (!val) {
-        this.currentLiIndex = null
-        this.currentTabIndex = 0
+        this.currentLiIndex = null;
+        this.currentTabIndex = 0;
       }
-    }
+    },
   },
-  created () {
+  created() {
     // 初始化导航栏
-    this.getConfigNav()
+    this.getConfigNav();
   },
   methods: {
-    ...mapActions(['handleLogOut']),
-    onChangePage () {
-      let url = 'http://192.168.1.66:10002/'
-      if (process.env.NODE_ENV === 'production') {
+    ...mapActions(["handleLogOut"]),
+    onChangePage() {
+      let url = "http://192.168.2.65:10002/";
+      if (process.env.NODE_ENV === "production") {
         // 生产
-        url = 'http://console.zhihuiwenlvyun.com/'
-      } else if (process.env.NODE_ENV === 'testing') {
+        url = "http://console.zhihuiwenlvyun.com/";
+      } else if (process.env.NODE_ENV === "testing") {
         // 测试
-        url = 'http://tconsole.zhihuiwenlvyun.com/'
+        url = "http://tconsole.zhihuiwenlvyun.com/";
       } else {
         // 开发
-        url = 'http://192.168.2.156:10002/'
+        url = "http://192.168.2.65:10002/#/home";
       }
-      // console.log(this.$store.state.user.token, "store.state.user.token");
-      // localStorage.clear();
-      // this.$router.push({
-      //   path: "/microApp/dev",
-      // });
-      // console.log(data);
-      // console.log();
-      // this.$store.commit("setToken", data);
-      // this.$store.commit("setIsLogin", true);
-      // window.localStorage.setItem("setToken", data);
-      // window.localStorage.setItem("setIsLogin", true);
-
-      // window.addEventListener("setToken", function (data) {
-      //   console.log(data, "sssssssss");
-      //   window.open(url);
-      // });
-      // window.location.href = url;
-      // return
-      let data = this.$store.state.user.token
-      // console.log(data, "dat");
-      document.cookie = `token=${data}; path=/; domain=wdblog.top;`
-      Cookies.set('token', data)
-      // console.log(Cookies.get("token"), 'Cookies.get("token")111111111111');
+      let data = this.$store.state.user.token;
+      document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
+      Cookies.set("token", data);
       getUserInfo()
         .then((res) => {
-          console.log(res)
-          window.open(url)
+          console.log(res);
+          window.open(url);
         })
         .catch((err) => {
-          console.log(err)
-          this.$router.push('/login')
-        })
+          console.log(err);
+          this.$router.push("/login");
+        });
     },
-    loginOut () {
+    loginOut() {
       this.handleLogOut().then(() => {
-        if (process.env.NODE_ENV === 'development') {
-          Cookies.set('token', '', { path: '', expires: 1 })
+        if (process.env.NODE_ENV === "development") {
+          Cookies.set("token", "", { path: "", expires: 1 });
         } else {
-          Cookies.set('token', '', {
-            domain: '.zhihuiwenlvyun.com',
-            path: '',
-            expires: 1
-          })
+          Cookies.set("token", "", {
+            domain: ".zhihuiwenlvyun.com",
+            path: "",
+            expires: 1,
+          });
         }
-        this.$router.push('/login')
-      })
-      this.$store.commit('setIsLogin', false)
-      this.$store.commit('setUserId', '')
-      this.$store.commit('setUserName', '')
-      this.$store.commit('setUserInfo', {})
-      this.$store.commit('setToken', '')
+        this.$router.push("/login");
+      });
+      this.$store.commit("setIsLogin", false);
+      this.$store.commit("setUserId", "");
+      this.$store.commit("setUserName", "");
+      this.$store.commit("setUserInfo", {});
+      this.$store.commit("setToken", "");
     },
+
+
     // 获取导航栏数据
-    getConfigNav () {
+    getConfigNav() {
       navigateTree().then((res) => {
         if (res.ret == 0) {
           res.data.map((item) => {
             if (item.children == null || !item.children) {
-              item.children = []
+              item.children = [];
             }
-          })
-          this.configNav = res.data
-          this.dataMeta(res.data)
+          });
+          this.configNav = res.data;
+          this.dataMeta(res.data);
         }
-      })
+      });
     },
+
     // 控制导航跳转
-    handleNavJump (item) {
+    handleNavJump(item) {
+      // console.log(item)
       if (item.jumpFlag) {
-        this.$router.push(item.url)
+        this.$router.push(item.url);
       }
-      console.log(item)
     },
+    
     // 递归处理导航数据
-    dataMeta (data) {
+    dataMeta(data) {
       data.map((item) => {
         if (item.children == null || !item.children) {
-          item.children = []
+          item.children = [];
         } else {
-          this.dataMeta(item.children)
+          this.dataMeta(item.children);
         }
-      })
+      });
     },
-    getNavIndex (index) {
-      this.TabIndex = index
-    }
+    getNavIndex(index) {
+      this.TabIndex = index;
+    },
   },
-  mounted () {}
-}
+  mounted() {},
+};
 </script>
 
 <style scoped lang="scss">

@@ -53,7 +53,7 @@ export default {
         this.$router.push("./login");
         return;
       }
-      $router.push({ path: "feedback" });
+      this.$router.push({ path: "feedback" });
     },
 
     toTop() {

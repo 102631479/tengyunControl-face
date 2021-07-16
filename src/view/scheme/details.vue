@@ -19,7 +19,7 @@
         <div class="banner-video">
           <span class="f-size-38">
             <!-- 刷脸就行  -->
-            {{list.bannerHeadline}}
+            {{list.bannerHeadline}}  
           </span>
           <img src="../../assets/images/product/ic_bf_b.png" alt="" class="videoImg" @click="bannerVideo">
         </div>
@@ -41,7 +41,7 @@
         <div class="flex plan-advantage-list content-box-info">
           <div class="plan-advantage-box flex" v-for="item in list.superiorityList" :key="item.id">
             <!-- <img src="@/assets/images/scheme/jiejuefangan.png" alt="" /> -->
-            <img :src="item.pictureUrl" alt="" />
+            <img :src="item.pictureUrl" alt="" /> 
             <p class="f-size-18">
               {{item.theme}}
               <!-- 双端O2O的电商模式 -->
@@ -173,11 +173,11 @@
           <!-- <span class="f-size-16">{{list.businessDescribe}}</span>
           <Button type="primary">开始使用</Button>
         </div> -->
-        <div class="contact-us-box flex" style="margin:0 auto;">
+        <div class="contact-us-box flex" style="margin:0 auto; padding-left:16px">
           <p class="contact-us-title f-size-24">联系我们</p>
           <span class="f-size-16">我们为您提供个性化的售前购买咨询服务，</span>
           <span class="f-size-16">以及全面的技术售后服务</span>
-          <Button type="primary" ghost>联系我们</Button>
+          <Button type="primary" ghost @click="gonavJump">联系我们</Button>
         </div>
       </div>
     </div>
@@ -197,77 +197,84 @@
 </template>
 
 <script>
-import 'swiper/css/swiper.css'
-import { Swiper } from 'vue-awesome-swiper'
-import { getSolutions } from '@/api/solution'
+import "swiper/css/swiper.css";
+import { Swiper } from "vue-awesome-swiper";
+import { getSolutions} from "@/api/solution";
 export default {
   components: {
-    Swiper
+    Swiper,
   },
-  data () {
+  data() {
     return {
-      url: '',
-      list: [],
-      modalVideo: false, // 播放弹窗关闭
-      ArchitectureUrl: {}, // 解决方案架构
-      ScenesList: [], // 使用场景
-      Cooperation: [], // 合作案例
-      productList: [], // 相关产品
+      url: "",
+      list:[],
+      modalVideo:false,//播放弹窗关闭
+      ArchitectureUrl:{},//解决方案架构
+      ScenesList:[],//使用场景
+      Cooperation:[],//合作案例
+      productList:[],//相关产品
       swiperOption: {
         pagination: {
-          el: '.swiper-pagination',
-          clickable: false // 允许点击小圆点跳转
+          el: ".swiper-pagination",
+          clickable: false, // 允许点击小圆点跳转
         },
-        loop: true, // 无限循环
+        loop: true, //无限循环
         slidesPerView: 3,
-        spaceBetween: 7
-      }
-    }
+        spaceBetween: 7,
+      },
+    };
   },
-  created () {
+  created() {
     this.init()
   },
   methods: {
-    // 播放器
-    bannerVideo () {
-      this.modalVideo = true
+    //播放器
+    bannerVideo(){
+      this.modalVideo=true
     },
-    handleSwiper (type) {
-      if (type == 'prev') {
-        this.swiper.slidePrev()
+    handleSwiper(type) {
+      if (type == "prev") {
+        this.swiper.slidePrev();
       }
-      if (type == 'next') {
-        this.swiper.slideNext()
+      if (type == "next") {
+        this.swiper.slideNext();
       }
     },
-    init () {
-      // 详情
-      getSolutions(this.$route.query.id)
-        .then(res => {
-          this.list = res.data
-          // 解决方案架构
-          this.ArchitectureUrl = res.data.frameworkList[0]
-          // 使用场景
-          this.ScenesList = res.data.scenarioList
-          // 合作案例
-          this.Cooperation = res.data.clientelePartnerList
-          // 相关产品
-          this.productList = res.data.productList
-          console.log(this.list)
-        }).catch(err => {
-          console.log(err)
-        })
+    init(){
+      //详情
+      getSolutions(this.$route.query.id).then(res=>{
+        // console.log(res)
+        this.list=res.data
+        //解决方案架构
+        this.ArchitectureUrl=res.data.frameworkList[0]
+        //使用场景
+        this.ScenesList=res.data.scenarioList
+        //合作案例
+        this.Cooperation=res.data.clientelePartnerList
+        //相关产品
+        this.productList=res.data.productList
+        // console.log(this.list);
+      }).catch(err=>{
+        console.log(err)
+      })
+
+    },
+    gonavJump(){//跳转联系我们
+      this.$router.push({   //GET
+      path:"/contact",
+      // query:{id}
+    });
     }
   },
   computed: {
-    swiper () {
-      return this.$refs.mySwiper.$swiper
-    }
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
   },
-  mounted () {
-    this.swiper.slideTo(3, 1000, false)
+  mounted() {
+    this.swiper.slideTo(3, 1000, false);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

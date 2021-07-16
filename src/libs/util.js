@@ -6,7 +6,7 @@ import store from '@/store'
 const { title, cookieExpires, useI18n } = config
 
 export const TOKEN_KEY = 'token'
-console.log(TOKEN_KEY, 'sssssssssssssss')
+// console.log(TOKEN_KEY,'sssssssssssssss');
 export const setToken = (token) => {
   Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 })
 }
@@ -399,55 +399,57 @@ export const setTitle = (routeItem, vm) => {
   window.document.title = resTitle
 }
 
+
+
 /**
  * 由一个组件，向下找到最近的指定组件
 */
 export const findComponentDownward = (context, componentName) => {
-  const childrens = context.$children
-  let children = null
+  const childrens = context.$children;
+  let children = null;
 
   if (childrens.length) {
     for (const child of childrens) {
-      const name = child.$options.name
+      const name = child.$options.name;
 
       if (name === componentName) {
-        children = child
-        break
+        children = child;
+        break;
       } else {
-        children = findComponentDownward(child, componentName)
-        if (children) break
+        children = findComponentDownward(child, componentName);
+        if (children) break;
       }
     }
   }
-  return children
+  return children;
 }
 
 /**
  *  由一个组件，向上找到最近的指定组件
 */
 export const findComponentUpward = (context, componentName) => {
-  let parent = context.$parent
-  let name = parent.$options.name
+  let parent = context.$parent;
+  let name = parent.$options.name;
 
   while (parent && (!name || [componentName].indexOf(name) < 0)) {
-    parent = parent.$parent
-    if (parent) name = parent.$options.name
+    parent = parent.$parent;
+    if (parent) name = parent.$options.name;
   }
-  return parent
+  return parent;
 }
 
 /**
  * 邮箱验证
 */
 export const validateEMail = (rule, value, callback) => {
-  const reg = /^([a-zA-Z0-9]+[-_\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/
-  if (value == '' || value == undefined || value == null) {
-    callback()
+  const reg = /^([a-zA-Z0-9]+[-_\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
+  if (value == "" || value == undefined || value == null) {
+    callback();
   } else {
     if (!reg.test(value)) {
-      callback(new Error('邮箱格式不正确'))
+      callback(new Error("邮箱格式不正确"));
     } else {
-      callback()
+      callback();
     }
   }
 }
@@ -456,30 +458,30 @@ export const validateEMail = (rule, value, callback) => {
 */
 
 export const validateTel = (rule, value, callback) => {
-  const reg = /^1[3456789]\d{9}$/
-  if (value == '' || value == undefined || value == null) {
-    callback()
+  const reg = /^1[3456789]\d{9}$/;
+  if (value == "" || value == undefined || value == null) {
+    callback();
   } else {
     if (!reg.test(value)) {
-      callback(new Error('手机号格式不正确'))
+      callback(new Error("手机号格式不正确"));
     } else {
-      callback()
+      callback();
     }
   }
 }
 
 // 倒计时
 export class SendCode {
-  constructor (vm, number = 60) {
-    console.log(vm)
+  constructor(vm, number = 60) {
+    // console.log(vm)
     this.number = number // 倒计时秒数
     this.timer = null // 定时器
     this.vm = vm // 对象
-    this.lock = false // 锁
+    this.lock = false  // 锁
   }
 
   // 开始倒计时
-  start () {
+  start() {
     if (this.lock) return
     this.lock = true
     clearInterval(this.timer)
@@ -494,13 +496,15 @@ export class SendCode {
         clearInterval(this.timer)
         this.lock = false
       }
-    }, 1000)
+    }, 1000);
   }
 
   // 重置
-  reset () {
+  reset() {
     clearInterval(this.timer)
     this.vm.innerHTML = '获取验证码'
     this.lock = false
+
   }
+
 }
