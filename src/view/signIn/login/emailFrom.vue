@@ -115,11 +115,15 @@ export default {
     M4加密
     */
     gmcryptSm4(password) {
+      let md32 = this.$md5(password,32)
+      let After16 = md32.substring(md32.length-16)
       let sm4Config = {
-        key: "gph2i2xxfln0w9sj",
+        // key: "gph2i2xxfln0w9sj",
         // mode: "cbc",
-        iv: "8r13qykaklic5su7",
+        // iv: "8r13qykaklic5su7",
         // cipherType: "base64",
+         key:After16,
+         iv:After16,
       };
       let sm4 = new SM4(sm4Config);
       let newPassword = password.trim();

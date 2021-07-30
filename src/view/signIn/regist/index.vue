@@ -93,9 +93,9 @@
           <Checkbox v-model="single">
             <span class="pl-2">阅读并同意</span>
           </Checkbox>
-          <span class="cup color-blue">《用户服务条款》</span>
+          <span class="cup color-blue" @click="agreement(1)">《用户服务条款》</span>
           <span>和</span>
-          <span class="cup color-blue">《用户隐私协议》</span>
+          <span class="cup color-blue" @click="agreement(2)">《用户隐私协议》</span>
         </div>
         <div class="pl-10 pr-10">
           <Button
@@ -118,7 +118,7 @@
 
 <script>
 const SM4 = require("gm-crypt").sm4;
-import { register, verifyCode, resetPassword } from "@/api/user";
+import { register, verifyCode, resetPassword , getAgreement} from "@/api/user";
 import { validateEMail, validateTel, SendCode } from "@/libs/util";
 import { cloneDeep } from "lodash";
 export default {
@@ -248,11 +248,14 @@ export default {
       M4加密
     */
     gmcryptSm4(password) {
+      let md16 = this.$md5(this.registForm.phone,16)
       let sm4Config = {
-        key: "gph2i2xxfln0w9sj",
+        // key: "gph2i2xxfln0w9sj",
         // mode: "cbc",
-        iv: "8r13qykaklic5su7",
+        // iv: "8r13qykaklic5su7",
         // cipherType: "base64",
+        key: md16,
+        iv: md16,
       };
       let sm4 = new SM4(sm4Config);
       let newPassword = password.trim();
@@ -260,6 +263,47 @@ export default {
       // console.log(sm4.decrypt(text), "解密字符串");
       return sm4.encrypt(newPassword);
     },
+    // //字符串转base64
+    // encode(str){
+    //   // 对字符串进行编码
+    //   var encode = encodeURI(str);
+    //   // 对编码的字符串转化base64
+    //   var base64 = btoa(encode);
+    //   return base64;
+    // },
+    // // base64转字符串
+    // decode(base64){
+    //  // 对base64转编码
+    //  var decode = atob(base64);
+    //  // 编码转字符串
+    //  var str = decodeURI(decode);
+    //  return str;
+    // },
+
+    agreement(type){
+      // 1 用户服务 2 用户隐私
+      if(type==1){
+        this.$router.push({ name: "userService" });
+      }else{
+        this.$router.push({ name: "userPrivacy" });
+      }
+
+      //测试
+
+      /*encodeURI和decodeURI是成对来使用的，
+      因为浏览器的地址栏有中文字符的话，可以会出现不可预期的错误，所以可以encodeURI把非英文字符转化为英文编码，
+      decodeURI可以用来把字符还原回来。encodeURI方法不会对下列字符进行编码：":"、"/"、";" 和 "?"，
+      encodeURIComponent方法可以对这些字符进行编码。 */
+      // console.log(encodeURI(type), decodeURI(encodeURI(type)))
+
+      // console.log(this.decode(this.encode(type)))
+      // getAgreement({fileName:type}).then(res=>{
+      //   console.log(res)
+      //   // window.open(`https://view.xdocin.com/xdoc?_xdoc=${res.data}`)
+      // }).catch(err=>{
+      //   console.log(err)
+      // })
+    }
   },
 };
 </script>

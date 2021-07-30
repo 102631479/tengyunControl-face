@@ -5,6 +5,8 @@ module.exports = {
     '@vue/standard'
   ],
   rules: {
+    test: /.md$/,
+    loader: 'text - loader',
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development

@@ -81,7 +81,18 @@ export const register = data => {
     data
   })
 }
-
+// 获取协议条款
+export const getAgreement = params => {
+  return axios.request({
+    headers:{
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    },
+    // document/document-fileAddress/{fileName}
+    url:  platform.OPERATE + '/document/document-fileAddress',
+    method: 'get',
+    params
+  })
+}
 // 微信登录
 export const loginWeChart = () => {
   return axios.request({

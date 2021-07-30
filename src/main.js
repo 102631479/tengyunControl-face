@@ -59,6 +59,9 @@ import TreeTable from 'tree-table-vue'
 import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
 
+import md5 from './libs/md5';
+Vue.prototype.$md5 = md5;
+
 // 导入乾坤函数
 import {
   registerMicroApps,

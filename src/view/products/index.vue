@@ -70,7 +70,7 @@
               v-for="item in NewProducts"
               :key="item.id"
               @click="handleJump(item.id)"
-              >
+              > 
                 <p class="f-size-16">{{item.businessName}}</p>
                 <p class="f-size-14" style="margin-top: 10px">{{item.productDescribe}}</p>
               </div>
@@ -128,11 +128,16 @@
                 :key="resIndex"
                 @click="handleJump(item.id)"
               >
-                <p class="f-size-16">{{ res.businessName }}</p>
-                <span class="f-size-14">
-                  {{res.businessDescribe}}
-                  <!-- 暂无数据 -->
-                </span>
+                <div>
+                  <img :src="res.businessIcon" alt="">
+                </div>
+                <div>
+                  <p class="f-size-16">{{ res.businessName }}</p>
+                  <span class="f-size-14">
+                     {{res.businessDescribe}}
+                   <!-- 暂无数据 -->
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -397,6 +402,7 @@ export default {
       })
       //获取最新产品
       getNewProducts().then(res=>{
+        // console.log(res);
         this.NewProducts=res.data
       }).catch(err=>{
         console.log(err);
@@ -405,7 +411,8 @@ export default {
       getBasicProduct('001').then(res=>{
         let BasicList=JSON.parse(res.data)
         this.listData=BasicList
-        // console.log(222,BasicList);
+         console.log(222,BasicList);
+        // console.log(222,res.data);
       }).catch(err=>{
         console.log(err);
       })

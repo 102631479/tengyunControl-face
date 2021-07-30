@@ -124,7 +124,8 @@
                       v-show="ind < isShowMoreNum"
                     >
                       <div class="flex">
-                        <img src="@/assets/images/scheme/jiejuefangan.png" />
+                        <!-- <img src="@/assets/images/scheme/jiejuefangan.png" /> -->
+                         <img :src="item.businessIcon" />
                         <span class="all-plan-list-name"> {{item.businessName}} </span>
                       </div>
                       <p class="all-plan-list-content"> {{item.businessDescribe}} </p>
@@ -194,7 +195,7 @@ export default {
   watch:{
     isShowMore(newVal,oldVal){
       // console.log(newVal);
-      this.isShowMoreNum = newVal ? 6:3 
+      this.isShowMoreNum = newVal ? 6:3 //999:3   //最大999个最少3个
     }
   },
   created() {
@@ -220,6 +221,7 @@ export default {
     changeState(){
        getNavSolutions('003').then((d) => {
         let data=JSON.parse(d.data)
+        console.log(data)
         this.lists = data;
       }).catch((e) => {
         // this.$Message.warning(e.message);

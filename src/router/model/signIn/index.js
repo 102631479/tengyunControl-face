@@ -36,6 +36,24 @@ export default [
         },
         component: () => import('@/view/signIn/setPwd')
       },
+      {
+        path: '/userService',
+        name: 'userService',
+        meta: {
+          title: '用户服务条款',
+          hideInMenu: true
+        },
+        component: () => import('@/view/signIn/agreement/userService')
+      },
+      {
+        path: '/userPrivacy',
+        name: 'userPrivacy',
+        meta: {
+          title: '用户隐私协议',
+          hideInMenu: true
+        },
+        component: () => import('@/view/signIn/agreement/userPrivacy')
+      },
     ]
   },
 ]

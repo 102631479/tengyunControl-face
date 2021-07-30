@@ -141,14 +141,21 @@
                             position: relative;
                             padding-left: 33px;
                             margin-top: 35px;
-                            &::before{
-                                content:'';
-                                position: absolute;
-                                left: 0;
+                            display: flex;
+                            // &::before{
+                            //     content:'';
+                            //     position: absolute;
+                            //     left: 0;
+                            //     display: block;
+                            //     width: 23px;
+                            //     height: 23px;
+                            //     background-image: url('../../assets/images/product/ic_tytb_link.png');
+                            // }
+                            img{
                                 display: block;
                                 width: 23px;
                                 height: 23px;
-                                background-image: url('../../assets/images/product/ic_tytb_link.png');
+                                margin-right: 10px;
                             }
                             span{
                                 color: #999999;

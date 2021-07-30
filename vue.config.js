@@ -20,11 +20,13 @@ const resolve = dir => {
 // 例如：https://www.foobar.com/my-app/
 // 需要将它改为'/my-app/'
 // iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
-const BASE_URL = process.env.NODE_ENV === 'production'
-  ? './'
-  : '/'
+const BASE_URL = process.env.NODE_ENV === 'production' ? './' : '/'
 
 module.exports = {
+  // rules: {
+  //   test: /.md$/,
+  //   loader: 'text - loader'
+  // },
   // Project deployment base
   // By default we assume your app will be deployed at the root of a domain,
   // e.g. https://www.my-app.com/
@@ -33,11 +35,31 @@ module.exports = {
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
   publicPath: BASE_URL,
+
+
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
   lintOnSave: false,
   chainWebpack: config => {
+<<<<<<< HEAD
+    config.module
+      .rule("md")
+      .test(/\.md/)
+      .use("vue-loader")
+      .loader("vue-loader")
+      .end()
+      .use("vue-markdown-loader")
+      .loader("vue-markdown-loader/lib/markdown-compiler")
+      .options({
+        raw: true,
+        preventExtract: true
+      });
+=======
+
+
+    
+>>>>>>> d8db3478d69fef6ea9f04d6bb73a53af0ba83603
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
       .set('_c', resolve('src/components'))
@@ -48,9 +70,13 @@ module.exports = {
   // devServer: {
   //   proxy: 'http://192.168.1.88:811/platform-auth'
   // }
-  configureWebpack: {
-    output: {
-      filename: 'js/[name].js',
-    }
-  }
+  // configureWebpack: {
+  //   test: /.md$/,
+  //   loader: 'text - loader',
+  //   output: {
+  //     filename: 'js/[name].js',
+  //   }
+  // }
+
+
 }
