@@ -42,7 +42,6 @@ module.exports = {
   // 如果你不需要使用eslint，把lintOnSave设为false即可
   lintOnSave: false,
   chainWebpack: config => {
-<<<<<<< HEAD
     config.module
       .rule("md")
       .test(/\.md/)
@@ -55,11 +54,9 @@ module.exports = {
         raw: true,
         preventExtract: true
       });
-=======
 
 
     
->>>>>>> d8db3478d69fef6ea9f04d6bb73a53af0ba83603
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
       .set('_c', resolve('src/components'))

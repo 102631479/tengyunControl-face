@@ -26,6 +26,7 @@
     "element-ui": "^2.14.1",
     "fs": "^0.0.1-security",
     "ftp": "^0.3.10",
+    "github-markdown-css": "^4.0.0",
     "gm-crypt": "^0.0.2",
     "html-loader": "^2.1.2",
     "html2canvas": "^1.0.0-alpha.12",
