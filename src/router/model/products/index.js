@@ -36,7 +36,7 @@ export default [
         name: 'production',
         meta: {
           hideInMenu: true,
-          title: '智慧景区',
+          title: '产品',
           notCache: true,
           icon: 'md-home'
         },

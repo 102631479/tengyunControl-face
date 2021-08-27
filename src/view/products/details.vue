@@ -9,22 +9,27 @@
   <div class="page">
     <!-- 占位广告图 -->
     <div class="banner">
-      <div class="banner-text"> 
+      <div class="banner-text">
         <div class="banner-video">
           <span class="f-size-38">
             <!-- 刷脸就行  -->
-            {{productsDel.bannerHeadline}}  
+            {{ productsDel.bannerHeadline }}
           </span>
-          <img src="../../assets/images/product/ic_bf_b.png" alt="" class="videoImg" @click="bannerVideo">
+          <img
+            src="../../assets/images/product/ic_bf_b.png"
+            alt=""
+            class="videoImg"
+            @click="bannerVideo"
+          />
         </div>
         <p class="f-size-16">
           <!-- 刷脸即可完成支付，准确率高，安全可靠，有效提升购物体验 -->
-          {{productsDel.bannerText}}
+          {{ productsDel.bannerText }}
         </p>
         <Button type="primary" @click="startUse">立即体验</Button>
       </div>
       <!-- <img src="@/assets/images/product/banner_sljx_cp.png" /> -->
-       <img :src="productsDel.bannerUrl" style="height:336px" />
+      <img :src="productsDel.bannerUrl" style="height: 336px" />
     </div>
     <!-- 产品段落描述和图文展示 -->
     <div class="product-detail content-box">
@@ -32,21 +37,26 @@
         <div class="product-detail-text">
           <p class="f-size-18">
             <!-- 刷脸就行 -->
-            {{productsDel.businessName}}
-            </p>
+            {{ productsDel.businessName }}
+          </p>
           <span class="f-size-14">
             <!-- 刷脸就行是“一部手机游云南”项目中，基于微信刷脸支付平台打造的一套全新的O2O双端智慧商业平台，一家基于
             微信刷脸支付服务实现电子会员应用系统。在综合性度假景区，免除繁复的购买、预订、核验环节，实现吃喝玩乐
             的刷脸就行。基础功能定义为微信卡券核验、会员刷脸扣费扣次应用、智慧商业和电子支付四项功能，并配套开发了无人书吧、
             无人自助服务驿站、无人超市等应用。在未来，我们将刷脸就行定位为本地服务电商，专门提供各式各样会员卡技术服务及市
             场功能，全面实现旅各行各业的刷脸就行！ -->
-            {{productsDel.deputyText}}
-            </span>
+            {{ productsDel.deputyText }}
+          </span>
         </div>
         <!-- <img src="@/assets/images/product/img_sljx_cp.png" alt="" /> -->
         <div class="product-detail-bf">
-           <img :src="productsDel.pictureUrl" alt="" />
-          <img src="../../assets/images/product/ic_bf_b.png" alt="" class="bfVideoImg" @click="bannerVideo">
+          <img :src="productsDel.pictureUrl" alt="" />
+          <img
+            src="../../assets/images/product/ic_bf_b.png"
+            alt=""
+            class="bfVideoImg"
+            @click="bannerVideo"
+          />
         </div>
       </div>
     </div>
@@ -63,10 +73,10 @@
             :key="index"
           >
             <img :src="item.characterUrl" alt="" />
-            <p class="f-size-18">{{item.mainHeading}}</p>
+            <p class="f-size-18">{{ item.mainHeading }}</p>
             <span class="f-size-14">
               <!-- 同时支持移动智能终端和刷脸智能终端双端的电商交易。双端销售产品一致；双端同时满足线上线下全部客户需求；双端采用统一商户系统管理；双端覆盖100%业务范围。 -->
-             {{item.deputyText}}
+              {{ item.deputyText }}
             </span>
           </div>
         </div>
@@ -84,10 +94,10 @@
               <div class="use-scene-content">
                 <span class="f-size-16">
                   <!-- 刷脸就行应用到智慧景区中可实现“吃住行游购娱展演赛”刷脸就行，免除繁复的购买、预订、核验环节。游客可通过小程序订购单一产品、组合产品、年卡等产品。可通过线下刷脸终端机、刷脸闸机进行核验。 -->
-                  {{item.text}}
+                  {{ item.text }}
                 </span>
                 <!-- <img src="@/assets/images/scheme/banner_sljx_jjfa.png" alt="" /> -->
-                <img :src="item.iconUrl" alt="" style="height:320px"/>
+                <img :src="item.iconUrl" alt="" style="height: 320px" />
               </div>
             </TabPane>
           </Tabs>
@@ -104,12 +114,12 @@
           >
             <img :src="item.pictureUrl" alt="" />
             <div class="customer-case-content">
-              <p class="f-size-18">{{item.companyName}}</p>
+              <p class="f-size-18">{{ item.companyName }}</p>
               <!-- <p class="f-size-14">全域旅游数字化平台</p> -->
               <span class="f-size-14">
                 <!-- 使用智慧文旅云的未来票房和刷脸就行产品
                 ，大大提升了核验的效率，游客可快速入园，票务产品丰富，操作编便捷。 -->
-                {{item.caseDescribe}}
+                {{ item.caseDescribe }}
               </span>
             </div>
           </div>
@@ -129,8 +139,10 @@
     <div class="contact-us content-box">
       <div class="contact-us-info content-box-info flex">
         <div class="contact-us-box flex">
-          <p class="contact-us-title f-size-24">开始使用智慧文旅云 {{productsDel.businessName}}</p>
-          <span class="f-size-16">{{productsDel.productDescribe}}</span>
+          <p class="contact-us-title f-size-24">
+            开始使用智慧文旅云 {{ productsDel.businessName }}
+          </p>
+          <span class="f-size-16">{{ productsDel.productDescribe }}</span>
           <!-- <span class="f-size-16">刷脸就行</span> -->
           <Button type="primary" @click="startUse">开始使用</Button>
         </div>
@@ -143,60 +155,69 @@
       </div>
     </div>
     <!-- 播放器 -->
-    <Modal
-      v-model="modalVideo"
-      :closable="false"
-      :footer-hide="true"
-    >
-      <video v-if="modalVideo" :src="productsDel.videoUrl" controls="controls"
-       style="display: block;width: 700px;height: 390px;"></video>
-      <div class="deleVideo" @click="modalVideo=false">
-        <img src="../../assets/images/ic_gb.png" alt="">
+    <Modal v-model="modalVideo" :closable="false" :footer-hide="true">
+      <video
+        v-if="modalVideo"
+        :src="productsDel.videoUrl"
+        controls="controls"
+        style="display: block; width: 700px; height: 390px"
+      ></video>
+      <div class="deleVideo" @click="modalVideo = false">
+        <img src="../../assets/images/ic_gb.png" alt="" />
       </div>
     </Modal>
   </div>
 </template>
 
 <script>
-import {getProductsDetail} from '../../api/products.js'
+import { getProductsDetail } from "../../api/products.js";
 export default {
   data() {
     return {
-      detlilID:'',
-      productsDel:{},
-      modalVideo:false,
+      detlilID: "",
+      productsDel: {},
+      modalVideo: false,
     };
   },
   created() {
     // console.log(this.$route.query.id) //GET
     // console.log(this.$route.params)  //POST
     // this.detlilID=this.$route.params.id
-    
-    this.detlilID=this.$route.query.id
-    this.init(this.detlilID)
+    this.$bus.on("schemeDetail-router", () => {
+      // console.log("更新数据111111111111");
+      this.init(this.$route.query.id);
+      return;
+    });
+    this.detlilID = this.$route.query.id;
+    this.init(this.detlilID);
     // this.init('1372825594884665344')
   },
   methods: {
-    init(id){
-      getProductsDetail(id).then(res=>{
-        this.productsDel=res.data
-        // console.log(res.data,4444);
-      }).catch(err=>{console.log(err);})
+    init(id) {
+      getProductsDetail(id)
+        .then((res) => {
+          this.productsDel = res.data;
+          // console.log(res.data,4444);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    bannerVideo(){
-      this.modalVideo=true
+    bannerVideo() {
+      this.modalVideo = true;
     },
-    startUse(){
+    startUse() {
       // console.log('我是产品地址',this.productsDel.productUrl)
-      window.open( 'https://'+this.productsDel.productUrl)
-
+      window.open("https://" + this.productsDel.productUrl);
     },
-    gonavJump(){//跳转联系我们
-        this.$router.push({   //GET
-        path:"/contact",
+    gonavJump() {
+      //跳转联系我们
+      this.$router.push({
+        //GET
+        path: "/contact",
         // query:{id}
       });
-    }
+    },
   },
   mounted() {},
 };

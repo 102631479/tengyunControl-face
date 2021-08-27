@@ -68,6 +68,8 @@ import {
   setDefaultMountApp,
   start
 } from "qiankun";
+import VueBus from 'vue-bus'
+Vue.use(VueBus)
 
 // Vue.use(iView, {
 //   i18n: (key, value) => i18n.t(key, value)

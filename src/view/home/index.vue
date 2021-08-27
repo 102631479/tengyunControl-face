@@ -293,8 +293,7 @@ export default {
         .then((d) => {
           console.log(d, "信息");
           this.$store.commit("setUserInfo", d.data);
-                    this.$store.commit("setIsLogin", true);
-
+          this.$store.commit("setIsLogin", true);
         })
         .catch((err) => {
           console.log("需要重新登陆");
@@ -312,7 +311,8 @@ export default {
     getUserInfo()
       .then((d) => {
         this.$store.commit("setUserInfo", d.data);
-      }) .catch((err) => {
+      })
+      .catch((err) => {
         console.log("需要重新登陆");
         console.log(err);
         this.$store.commit("setIsLogin", false);
@@ -335,7 +335,7 @@ export default {
   font-family: PingFang SC;
 }
 // -------------------产品服务样式------------------------------
-/*
+/* 
   产品服务样式
  */
 .product-box {
@@ -385,7 +385,7 @@ export default {
   .product-content-content {
     max-width: 1200px;
   }
-  /*
+  /* 
     tabs标签页样式
   */
   .product-content-table {

@@ -20,6 +20,7 @@ import mobileLogin from '@/view/mobile/login'
  */
 
 export default [
+  
   {
     path: '/test',
     name: 'test',

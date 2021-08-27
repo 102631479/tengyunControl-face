@@ -14,7 +14,6 @@ export default [
     name: 'activity',
     redirect: '/activity',
     component: MainFront,
-
     meta: {
       hideInMenu: true,
       notCache: true
@@ -25,11 +24,12 @@ export default [
         name: 'activity',
         meta: {
           hideInMenu: true,
-          title: '智慧景区',
+          title: '最新活动',
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('@/view/activity')
+        component: () => import('../../../view/activity/index.vue')
+        // component: () => import('@/view/activity/index.vue')
       },{
         path: '/actDetail',
         name: 'actDetail',

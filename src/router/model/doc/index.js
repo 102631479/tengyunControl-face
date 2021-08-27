@@ -25,7 +25,7 @@ export default [
         name: 'document',
         meta: {
           hideInMenu: true,
-          title: '智慧景区',
+          title: '文档',
           notCache: true,
           icon: 'md-home'
         },

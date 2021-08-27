@@ -50,7 +50,7 @@
                 :class="{
                   'nav-list-hover': currentLiIndex == index && isNavShow,
                 }"
-                @click="handleNavJump(item)"
+                @click="handleNavJump(item, 1, '我是首页产品解决方案')"
               >
                 <span
                   v-if="item.useFlag"
@@ -86,7 +86,7 @@
             :class="{
               'nav-tab-hover': currentTabIndex == index,
             }"
-            @click="handleNavJump(item)"
+            @click="handleNavJump(item, 2, '导航栏遮罩')"
           >
             {{ item.name }}
           </li>
@@ -107,7 +107,7 @@
               :class="{
                 'nav-tab-hovers': TabIndex == index,
               }"
-              @click="handleNavJump(item)"
+              @click="handleNavJump(item, 3, '三级导航')"
             >
               {{ item.name }}
             </p>
@@ -116,7 +116,7 @@
               <li
                 class="f-size-12 cup tab-nav-item"
                 v-for="(child, childIndex) in item.navigateBusinessVos"
-                @click="handleNavJump(child)"
+                @click="handleNavJump(child, 4, '产品列表')"
                 :key="childIndex"
               >
                 <p class="proLists">{{ child.businessName }}</p>
@@ -287,7 +287,6 @@ export default {
       this.$store.commit("setToken", "");
     },
 
-
     // 获取导航栏数据
     getConfigNav() {
       navigateTree().then((res) => {
@@ -304,13 +303,89 @@ export default {
     },
 
     // 控制导航跳转
-    handleNavJump(item) {
-      // console.log(item)
-      if (item.jumpFlag) {
-        this.$router.push(item.url);
+    handleNavJump(item, hodeUp, data) {
+      // console.log("控制导航跳转");
+      console.log(item, hodeUp, data, "111111111111111111111");
+      // return
+      if (data == "我是首页产品解决方案") {
+        // console.log("11");
+        console.log(item.url);
+        // returns
+        if (item.jumpFlag) {
+          this.$router.push(item.url);
+        } else {
+          this.$Message.error("没有权限");
+        }
       }
+      if (data == "产品列表") {
+        // console.log(item.id);
+        // console.log("跳转详情页");
+        let id = item.id;
+        let url = item.url;
+        console.log(item, hodeUp, data, "22222222222");
+        if (hodeUp == "4") {
+          if (item.parentCode == "003") {
+            this.$router.push({
+              //GET
+              // path: url,
+              path: "/schemeDetail",
+              query: { id },
+            });
+            this.$bus.emit("schemeDetail-router", "ss");
+            return;
+          }
+          if (item.parentCode == "001") {
+            this.$router.push({
+              //GET
+              // path: url,
+              path: "/productDetail",
+              query: { id },
+            });
+            this.$bus.emit("schemeDetail-router", "ss");
+            return;
+          }
+        }
+
+        return;
+        // if (item.parentCode == "003") {
+        if (hodeUp == "4") {
+          this.$router.push({
+            //GET
+            // path: url,
+            path: "/schemeDetail",
+            query: { id },
+          });
+          this.$bus.emit("schemeDetail-router", "ss");
+          return;
+        } else {
+          if (url) {
+            // window.location.href = `http://${url}`
+            // return
+            let urll = `http://${url}`;
+            // window.open(urll.replaceAll("\\+", "%20").trim());
+          } else {
+            this.$Message.error("跳转地址为空");
+            // alert("地址伟空");
+          }
+        }
+
+        console.log("http://" + url, "新窗口地址");
+        console.log("fanhui");
+      }
+      return;
+
+      // if (hodeUp == 1 || hodeUp == 2 || hodeUp == 3) {
+      //   //一二三级 参数拦截
+      //   //文档里面没有四级
+      //   if (item.jumpFlag) {
+      //     this.$router.push(item.url);
+      //   }
+      // } else {
+      //   //这里是四级 不做拦截 缺少参数来分辨是产品还是方案
+      //   this.$router.push(item.url);
+      // }
     },
-    
+
     // 递归处理导航数据
     dataMeta(data) {
       data.map((item) => {

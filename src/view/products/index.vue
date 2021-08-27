@@ -24,7 +24,10 @@
     </div>
     <!-- 热门、最新、最新发布产品 -->
     <div class="product-activity flex" ref="hotProHeight">
-      <div class="product-activity-info flex" style="justify-content: space-evenly;">
+      <div
+        class="product-activity-info flex"
+        style="justify-content: space-evenly"
+      >
         <!-- 热门产品 -->
         <div class="product-activity-box">
           <div class="product-activity-title flex">
@@ -41,13 +44,17 @@
             <p class="f-size-14">吃喝玩乐，刷脸就行</p>
           </div> -->
           <div class="activity-box-popular">
-               <div class="popularRepeat"
-                v-for="item in HotProducts"
-                :key="item.id"
-               @click="handleJump(item.id)">
-                 <p class="f-size-16">{{item.businessName}}</p>
-                 <p class="f-size-14" style="margin-top: 10px">{{item.productDescribe}}</p>
-               </div>
+            <div
+              class="popularRepeat"
+              v-for="item in HotProducts"
+              :key="item.id"
+              @click="handleJump(item.id)"
+            >
+              <p class="f-size-16">{{ item.businessName }}</p>
+              <p class="f-size-14" style="margin-top: 10px">
+                {{ item.productDescribe }}
+              </p>
+            </div>
           </div>
         </div>
         <!-- 最新产品 -->
@@ -66,14 +73,17 @@
             <p class="f-size-14">吃喝玩乐，刷脸就行</p>
           </div> -->
           <div class="activity-box-popular">
-              <div class="popularRepeat"
+            <div
+              class="popularRepeat"
               v-for="item in NewProducts"
               :key="item.id"
-              @click="handleJump(item.id)"
-              > 
-                <p class="f-size-16">{{item.businessName}}</p>
-                <p class="f-size-14" style="margin-top: 10px">{{item.productDescribe}}</p>
-              </div>
+              @click="handleJump(item.id, item)"
+            >
+              <p class="f-size-16">{{ item.businessName }}</p>
+              <p class="f-size-14" style="margin-top: 10px">
+                {{ item.productDescribe }}
+              </p>
+            </div>
           </div>
         </div>
         <!-- 最新发布 -->
@@ -95,6 +105,7 @@
       </div>
     </div>
     <!-- 全部产品列表 -->
+
     <div class="product-content flex">
       <!-- 产品列表 -->
       <div class="product-list">
@@ -126,16 +137,16 @@
                 class="product-map-box cup"
                 v-for="(res, resIndex) in child.navigateBusinessVos"
                 :key="resIndex"
-                @click="handleJump(item.id)"
+                @click="handleJump(res.id)"
               >
                 <div>
-                  <img :src="res.businessIcon" alt="">
+                  <img :src="res.businessIcon" alt="" />
                 </div>
                 <div>
                   <p class="f-size-16">{{ res.businessName }}</p>
                   <span class="f-size-14">
-                     {{res.businessDescribe}}
-                   <!-- 暂无数据 -->
+                    {{ res.businessDescribe }}
+                    <!-- 暂无数据 -->
                   </span>
                 </div>
               </div>
@@ -215,7 +226,11 @@
 </template>
 
 <script>
-import {getHotProducts,getNewProducts,getBasicProduct} from '../../api/products.js'
+import {
+  getHotProducts,
+  getNewProducts,
+  getBasicProduct,
+} from "../../api/products.js";
 import { getUserInfo } from "@/api/user";
 import Cookies from "js-cookie";
 // 动态侧边目录
@@ -223,8 +238,8 @@ export default {
   data() {
     return {
       isFixed: false, //锚点定位模块是否固定定位状态
-      HotProducts:[],//热门产品
-      NewProducts:[],//最新产品
+      HotProducts: [], //热门产品
+      NewProducts: [], //最新产品
       listData: [
         {
           // title: "智慧景区",
@@ -291,7 +306,7 @@ export default {
     },
   },
   created() {
-    this.init()
+    this.init();
   },
   methods: {
     // 监听滚动位置
@@ -303,18 +318,27 @@ export default {
       this.isFixed = this.scroll > 400;
     },
     // 控制锚点滚动
+    // handleHref(index, childIndex) {
+    //   let jump = document
+    //     .getElementsByClassName("product-category")
+    //     [index].getElementsByClassName("href-select"); //获取当前点击的元素
+    //   let bannerHeight = this.$refs.banner.offsetHeight; //获取banner高度以计算偏移量
+    //   let hotProHeight = this.$refs.hotProHeight.offsetHeight; //获取banner高度以计算偏移量
+    //   let total = jump[childIndex].offsetTop + bannerHeight + hotProHeight - 20; //计算当前的offset在浏览窗口的整体偏移量
+    //   let step = total / 50; //平滑滚动的效果，把总距离分成50个小段，每10ms执行一次
+    //   let distance =
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop ||
+    //     window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
+
+    // },
     handleHref(index, childIndex) {
-      let jump = document
-        .getElementsByClassName("product-category")[index]
-        .getElementsByClassName("href-select"); //获取当前点击的元素
+      let jump = document.getElementsByClassName("product-category")[index].getElementsByClassName("href-select"); //获取当前点击的元素
       let bannerHeight = this.$refs.banner.offsetHeight; //获取banner高度以计算偏移量
       let hotProHeight = this.$refs.hotProHeight.offsetHeight; //获取banner高度以计算偏移量
       let total = jump[childIndex].offsetTop + bannerHeight + hotProHeight - 20; //计算当前的offset在浏览窗口的整体偏移量
       let step = total / 50; //平滑滚动的效果，把总距离分成50个小段，每10ms执行一次
-      let distance =
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
+      let distance =document.documentElement.scrollTop ||document.body.scrollTop ||window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
       if (total > distance) {
         smoothDown(); //向下滑动
       } else if (total < distance) {
@@ -378,47 +402,73 @@ export default {
       }
     },
     // 跳转
-    handleJump(id) {
-      this.$router.push({   //GET
-        path:"/productDetail",
-        query:{id}
+    handleJump(id, item) {
+      // console.log(item, "itme");
+      // console.log(id, "id");
+      // return;
+      this.$router.push({
+        //GET
+        path: "/productDetail",
+        query: { id },
       });
       // this.$router.push({  //POST
       //   name:"productDetail",
       //   params:{id}
       // });
-      
     },
     handleHrefCheck(item, index) {
+      console.log("我是点击一");
       item.checked = !item.checked;
       this.$set(this.listData, index, item);
     },
-    init(){
+    init() {
       //获取热门产品
-      getHotProducts().then(res=>{
-        this.HotProducts=res.data
-      }).catch(err=>{
-        console.log(err);
-      })
+      getHotProducts()
+        .then((res) => {
+          console.log(res, "ress");
+          this.HotProducts = res.data;
+        })
+        .catch((err) => {
+          this.$Message.warning({
+            background: true,
+            content: err,
+          });
+        });
       //获取最新产品
-      getNewProducts().then(res=>{
-        // console.log(res);
-        this.NewProducts=res.data
-      }).catch(err=>{
-        console.log(err);
-      })
+      getNewProducts()
+        .then((res) => {
+          this.NewProducts = res.data;
+        })
+        .catch((err) => {
+          this.$Message.warning({
+            background: true,
+            content: err,
+          });
+        });
       //获取产品列表
-      getBasicProduct('001').then(res=>{
-        let BasicList=JSON.parse(res.data)
-        this.listData=BasicList
-         console.log(222,BasicList);
-        // console.log(222,res.data);
-      }).catch(err=>{
-        console.log(err);
-      })
+      let that = this;
+      setTimeout(function () {
+        that.changeState();
+      }, 500);
+    },
+    changeState() {
+      getBasicProduct("001")
+        .then((res) => {
+          let BasicListDate = JSON.parse(res.data);
+          console.log(BasicListDate, "001");
+          this.listData = BasicListDate;
+          console.log(222, BasicListDate);
+          // console.log(222,res.data);
+        })
+        .catch((err) => {
+          this.$Message.warning({
+            background: true,
+            content: err,
+          });
+        });
     },
     //跳转控制台
-    navgetConsole(){
+    navgetConsole() {
       // console.log('跳转控制台个人中心,在页面中申请使用');
       let url = "http://192.168.2.65:10002/";
       if (process.env.NODE_ENV === "production") {
@@ -435,22 +485,24 @@ export default {
       document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
       Cookies.set("token", data);
       // 判断Cookies是否失效 没过期跳转 过期去登录
-      getUserInfo().then((res) => {
+      getUserInfo()
+        .then((res) => {
           window.open(url);
-      }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.$router.push("/login");
-      });
-
+        });
     },
     //跳转联系我们
-    gonavJump(){
-        this.$router.push({   //GET
-        path:"/contact",
+    gonavJump() {
+      this.$router.push({
+        //跳转
+        //GET
+        path: "/contact",
         // query:{id}
       });
-    }
-  
+    },
   },
   mounted() {
     this.listData.map((res) => {
