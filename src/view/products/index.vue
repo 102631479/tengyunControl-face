@@ -333,12 +333,17 @@ export default {
 
     // },
     handleHref(index, childIndex) {
-      let jump = document.getElementsByClassName("product-category")[index].getElementsByClassName("href-select"); //获取当前点击的元素
+      let jump = document
+        .getElementsByClassName("product-category")
+        [index].getElementsByClassName("href-select"); //获取当前点击的元素
       let bannerHeight = this.$refs.banner.offsetHeight; //获取banner高度以计算偏移量
       let hotProHeight = this.$refs.hotProHeight.offsetHeight; //获取banner高度以计算偏移量
       let total = jump[childIndex].offsetTop + bannerHeight + hotProHeight - 20; //计算当前的offset在浏览窗口的整体偏移量
       let step = total / 50; //平滑滚动的效果，把总距离分成50个小段，每10ms执行一次
-      let distance =document.documentElement.scrollTop ||document.body.scrollTop ||window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
+      let distance =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset; //获取滚动条的高度(兼容三种浏览器版本)
       if (total > distance) {
         smoothDown(); //向下滑动
       } else if (total < distance) {
@@ -429,6 +434,7 @@ export default {
           this.HotProducts = res.data;
         })
         .catch((err) => {
+          console.log("1111");
           this.$Message.warning({
             background: true,
             content: err,
@@ -440,6 +446,8 @@ export default {
           this.NewProducts = res.data;
         })
         .catch((err) => {
+          console.log("2222");
+
           this.$Message.warning({
             background: true,
             content: err,
@@ -461,10 +469,11 @@ export default {
           // console.log(222,res.data);
         })
         .catch((err) => {
-          this.$Message.warning({
-            background: true,
-            content: err,
-          });
+          console.log("没有数据加载失败");
+          // this.$Message.warning({
+          //   background: true,
+          //   content: err,
+          // });
         });
     },
     //跳转控制台

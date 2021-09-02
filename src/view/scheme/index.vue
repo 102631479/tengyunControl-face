@@ -270,9 +270,9 @@ export default {
           that.$Message.warning(e.message);
         });
       // //解决方案列表
-      // setTimeout(function () {
-      that.changeState();
-      // }, 500);
+      setTimeout(function () {
+        that.changeState();
+      }, 500);
     },
     changeState() {
       setTimeout(() => {
@@ -284,8 +284,8 @@ export default {
             console.log(this.lists, "this.lists");
           })
           .catch((e) => {
-            this.$Message.warning("没有数据");
-            this.$Message.warning(e.message);
+            // this.$Message.warning("没有数据");
+            // this.$Message.warning(e.message);
           });
       }, 500);
     },

@@ -248,7 +248,6 @@ export default {
     this.$bus.on("schemeDetail-router", () => {
       // console.log("更新数据111111111111");
       this.swiper.slideTo(3, 1000, true);
-
       this.init();
     });
   },

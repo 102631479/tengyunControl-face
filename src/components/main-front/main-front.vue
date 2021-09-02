@@ -252,7 +252,7 @@ export default {
         url = "http://tconsole.zhihuiwenlvyun.com/";
       } else {
         // 开发
-        url = "http://192.168.2.65:10002/#/home";
+        url = "http://192.168.2.65:10002/#/homePage";
       }
       let data = this.$store.state.user.token;
       document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
@@ -309,8 +309,9 @@ export default {
       // return
       if (data == "我是首页产品解决方案") {
         // console.log("11");
-        console.log(item.url);
-        // returns
+        console.log(item.url,'00001');
+        // return;
+        //
         if (item.jumpFlag) {
           this.$router.push(item.url);
         } else {

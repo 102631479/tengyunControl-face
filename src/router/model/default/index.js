@@ -29,7 +29,7 @@ export default [
   {
     path: '/',
     name: '_home',
-    redirect: '/home',
+    redirect: '/homePage',
     component: MainFront,
     //component: Main,
     meta: {
@@ -38,7 +38,7 @@ export default [
     },
     children: [
       {
-        path: '/home',
+        path: '/homePage',
         name: 'home',
         meta: {
           hideInMenu: true,
