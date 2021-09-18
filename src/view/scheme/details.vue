@@ -22,6 +22,7 @@
             {{ list.bannerHeadline }}
           </span>
           <img
+            v-if="bannerVideoIs"
             src="../../assets/images/product/ic_bf_b.png"
             alt=""
             class="videoImg"
@@ -89,7 +90,6 @@
         <span class="content-title f-size-30">解决方案架构</span>
         <div class="plan-framework-info content-box-info flex">
           <img :src="ArchitectureUrl.pictureUrl" alt="" />
-
           <div class="plan-framework-text flex">
             <p class="f-size-18">{{ ArchitectureUrl.headline }}</p>
 
@@ -152,9 +152,10 @@
         <span class="content-title f-size-30">相关产品</span>
         <div class="related-product-list content-box-info">
           <div
-            class="related-product-box flex"
+            class="related-product-box flex hardclass"
             v-for="(item, index) in productList"
             :key="index"
+            @click="productListPush(item.id)"
           >
             <img src="@/assets/images/scheme/jiejuefangan.png" alt="" />
             <div class="related-product-text">
@@ -223,6 +224,7 @@ export default {
   },
   data() {
     return {
+      bannerVideoIs: false,
       url: "",
       list: [],
       videoUrlData: "",
@@ -256,6 +258,13 @@ export default {
     bannerVideo() {
       this.modalVideo = true;
     },
+    productListPush(id) {
+      console.log(id, "我是id");
+      this.$router.push({
+        path: "/productDetail",
+        query: { id },
+      });
+    },
     handleSwiper(type) {
       if (type == "prev") {
         this.swiper.slidePrev();
@@ -274,7 +283,12 @@ export default {
           console.log(this.list, " this.list");
           this.videoUrlData = res.data.videoUrl;
           //解决方案架构
-
+          if (res.data.videoUrl == "") {
+            this.bannerVideoIs = false;
+          } else {
+            this.bannerVideoIs = true;
+          }
+          console.log("res.data.videoUrl");
           if (res.data.frameworkList == "") {
             let data = {
               pictureUrl: "空",
@@ -329,5 +343,15 @@ export default {
   .ivu-tabs-nav .ivu-tabs-tab {
     font-size: 18px;
   }
+}
+.hardclass {
+  cursor: pointer;
+  transition: 0.5s;
+}
+.hardclass:hover {
+  border-radius: 10px;
+  border: none;
+  background: rgb(247, 247, 247);
+  margin-top: 1px;
 }
 </style>

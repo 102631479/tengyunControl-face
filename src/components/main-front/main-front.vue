@@ -243,7 +243,8 @@ export default {
   methods: {
     ...mapActions(["handleLogOut"]),
     onChangePage() {
-      let url = "http://192.168.2.65:10002/";
+      let url = "http://console.zhihuiwenlvyun.com/";
+      // let url = "http://192.168.2.65:10002/";
       if (process.env.NODE_ENV === "production") {
         // 生产
         url = "http://console.zhihuiwenlvyun.com/";
@@ -252,7 +253,7 @@ export default {
         url = "http://tconsole.zhihuiwenlvyun.com/";
       } else {
         // 开发
-        url = "http://192.168.2.65:10002/#/homePage";
+        url = "http://console.zhihuiwenlvyun.com/";
       }
       let data = this.$store.state.user.token;
       document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
@@ -305,11 +306,11 @@ export default {
     // 控制导航跳转
     handleNavJump(item, hodeUp, data) {
       // console.log("控制导航跳转");
-      console.log(item, hodeUp, data, "111111111111111111111");
+      // console.log(item, hodeUp, data, "111111111111111111111");
       // return
       if (data == "我是首页产品解决方案") {
         // console.log("11");
-        console.log(item.url,'00001');
+        // console.log(item.url,'00001');
         // return;
         //
         if (item.jumpFlag) {

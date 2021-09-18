@@ -16,6 +16,7 @@
             {{ productsDel.bannerHeadline }}
           </span>
           <img
+            v-if="bannerVideoIs"
             src="../../assets/images/product/ic_bf_b.png"
             alt=""
             class="videoImg"
@@ -52,6 +53,7 @@
         <div class="product-detail-bf">
           <img :src="productsDel.pictureUrl" alt="" />
           <img
+            v-if="bannerVideoIs"
             src="../../assets/images/product/ic_bf_b.png"
             alt=""
             class="bfVideoImg"
@@ -174,6 +176,7 @@ import { getProductsDetail } from "../../api/products.js";
 export default {
   data() {
     return {
+      bannerVideoIs: false,
       detlilID: "",
       productsDel: {},
       modalVideo: false,
@@ -197,6 +200,13 @@ export default {
       getProductsDetail(id)
         .then((res) => {
           this.productsDel = res.data;
+          if (res.data.videoUrl == "") {
+            this.bannerVideoIs = false;
+          } else {
+            this.bannerVideoIs = true;
+          }
+          console.log("res.data.videoUrl");
+
           // console.log(res.data,4444);
         })
         .catch((err) => {
@@ -208,7 +218,8 @@ export default {
     },
     startUse() {
       // console.log('我是产品地址',this.productsDel.productUrl)
-      window.open("https://" + this.productsDel.productUrl);
+      // window.open("https://" + this.productsDel.productUrl);
+      window.open(this.productsDel.productUrl);
     },
     gonavJump() {
       //跳转联系我们

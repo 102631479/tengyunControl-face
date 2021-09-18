@@ -28,8 +28,8 @@ export default [
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('../../../view/activity/index.vue')
-        // component: () => import('@/view/activity/index.vue')
+        // component: () => import('../../../view/activity/index.vue')
+        component: () => import('@/view/activity/index.vue')
       },{
         path: '/actDetail',
         name: 'actDetail',

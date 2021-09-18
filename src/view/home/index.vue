@@ -27,10 +27,7 @@
                     <li
                       class="cup"
                       v-for="(i, index) in index == 0
-                        ? tab1
-                        : index == 1
-                        ? tab2
-                        : tab3"
+                      ? tab1: index == 1 ? tab2: tab3"
                       :key="index"
                     >
                       <span class="f-size-16">{{ i.title }}</span>
@@ -155,6 +152,7 @@ export default {
   components: { swiper, partnerComponent },
   data() {
     return {
+      //产品服务
       tab1: [
         {
           title: "卡劵营销",
@@ -174,7 +172,6 @@ export default {
           content: "以景区电商+全域电商为模式的全新性全域旅游开发模式",
         },
       ],
-
       tab2: [
         {
           title: "旅游数据分析",
@@ -201,7 +198,6 @@ export default {
             "以景区电商+集合景区优势资源，打造景区拳头产品，以多种形式，加大景区对旅游的二次消费回头率等",
         },
       ],
-
       tab3: [
         {
           title: "窗口业务系统",
@@ -221,17 +217,20 @@ export default {
         },
       ],
 
-      // 解决方案文案
+      // 服务案例文案 
       solveData: [
+        //这里的图片都是临时上传后的暂时使用地址 后期数据对接直接更换地址即可
         {
-          imgUrl: require("@/assets/images/company-img/青岛崂山@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/青岛崂山@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/okvmtlc0llb72rk61jz39yknwfpw3a4wo.png',
           name: "青岛崂山风景区",
           level: "AAAAA",
           title: "规模最大",
           content: "从“数字崂山”到“智慧崂山”再到“全域崂山”的建设全过程",
         },
         {
-          imgUrl: require("@/assets/images/company-img/八达岭@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/八达岭@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/6frstvvaesjhtz0dip1r6bac58ljkwkor.png',
           name: "八达岭长城",
           level: "AAAAA",
           title: "单日接单最多",
@@ -239,48 +238,52 @@ export default {
             "创造票联检票闸机单日单台检票最多纪录，体现闸机过硬的质量和运行的稳定性",
         },
         {
-          imgUrl: require("@/assets/images/company-img/浮梁古县衙@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/浮梁古县衙@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/1u5f3v8g513ra3mlo8u005bao4y2cokhy.png',
           name: "浮梁谷县衙",
           level: "AAAA",
           title: "运行周期最长",
           content: "使营销由传统销售窗口向新型020营销管理系统转型",
         },
         {
-          imgUrl: require("@/assets/images/company-img/张家界@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/张家界@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/uhwsyobtwbz9uwq7xvu8sd404ku7cys7f.png',
           name: "张家界玻璃桥",
           level: "AAAAA",
           title: "管理最超前",
           content: "全国首个实名制分时分段预约票务管理模式",
         },
         {
-          imgUrl: require("@/assets/images/company-img/辽宁丹东@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/辽宁丹东@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/30gdbk0ixrgjlz8g3emjopfjw3rfhqw9y.png',
           name: "辽宁丹东凤凰山风景区",
           level: "AAAA",
           title: "更便捷更周到的服务",
-          content:
-            "实现景区与景区之间、分销商与分销商之间的资源共享，进行资源整合",
+          content:"实现景区与景区之间、分销商与分销商之间的资源共享，进行资源整合",
         },
         {
-          imgUrl: require("@/assets/images/company-img/北京慕田峪@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/北京慕田峪@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/i582uvrgawb9f14xqnulkok4jkexhun05.png',
           name: "北京慕田峪长城",
           level: "AAAAA",
           title: "独立研发售检票系统",
           content: "采用国内最新型的：三辊闸检票机",
         },
         {
-          imgUrl: require("@/assets/images/company-img/北京青龙峡.png"),
+          // imgUrl: require("@/assets/images/company-img/北京青龙峡.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/e0ekt5ksl5mq8m41drw7rbyyoyjlmiio4.png',
           name: "北京青龙峡",
           level: "AAAA",
           title: "无纸化办公管理",
           content: "实现游客数据管理和分析，避免人工出错率",
         },
         {
-          imgUrl: require("@/assets/images/company-img/淄博周村@2x.png"),
+          // imgUrl: require("@/assets/images/company-img/淄博周村@2x.png"),
+          imgUrl:'https://open-test-1257245393.cos.ap-chengdu.myqcloud.com/platform/divobgubnqv10p93n5epacm82zuz9pw9e.png',
           name: "淄博周村古镇",
           level: "AAAA",
           title: "独立研发门票分销系统",
-          content:
-            "C/S、B/S混合架构，数据存储、验证，无限网络营销、商城无限覆盖",
+          content:"C/S、B/S混合架构，数据存储、验证，无限网络营销、商城无限覆盖",
         },
       ],
     };
@@ -289,38 +292,32 @@ export default {
     if (Cookies.get("token")) {
       console.log("已经在别的页面登陆过了");
       this.$store.commit("setToken", Cookies.get("token"));
-      getUserInfo()
-        .then((d) => {
-          console.log(d, "信息");
-          this.$store.commit("setUserInfo", d.data);
-          this.$store.commit("setIsLogin", true);
-        })
-        .catch((err) => {
-          console.log("需要重新登陆");
-          console.log(err);
-          this.$store.commit("setIsLogin", false);
-          this.$store.commit("setUserId", "");
-          this.$store.commit("setUserName", "");
-          this.$store.commit("setUserInfo", {});
-          this.$store.commit("setToken", "");
-        });
-      let data = this.$store.state.user.token;
-      document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
-      return;
-    }
-    getUserInfo()
-      .then((d) => {
+      getUserInfo().then((d) => {
+        console.log(d, "信息");
         this.$store.commit("setUserInfo", d.data);
-      })
-      .catch((err) => {
-        console.log("需要重新登陆");
-        console.log(err);
+        this.$store.commit("setIsLogin", true);
+      }).catch((err) => {
+        console.log("需要重新登陆",err);
         this.$store.commit("setIsLogin", false);
         this.$store.commit("setUserId", "");
         this.$store.commit("setUserName", "");
         this.$store.commit("setUserInfo", {});
         this.$store.commit("setToken", "");
       });
+      let data = this.$store.state.user.token;
+      document.cookie = `token=${data}; path=/; domain=wdblog.top;`;
+      return;
+    }
+    getUserInfo().then((d) => {
+      this.$store.commit("setUserInfo", d.data);
+    }).catch((err) => { console.log("需要重新登陆",err);
+      this.$store.commit("setIsLogin", false);
+      this.$store.commit("setUserId", "");
+      this.$store.commit("setUserName", "");
+      this.$store.commit("setUserInfo", {});
+      this.$store.commit("setToken", "");
+    });
+
   },
 };
 </script>
